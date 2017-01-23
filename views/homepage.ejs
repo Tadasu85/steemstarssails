@@ -1,29 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Basic Login With Sails</title>
+<center>
+<img src = "/images/banner.png" />
+<br><div>
+Banner created by @renzoarg
 
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/importer.css">
-    <!--STYLES END-->
-  </head>
-
-  <body>
-
-    <h1>Basic Login With Sails</h1>
-
-    <% if (req.session.me) { %>
-    <a href="/logout">Logout</a>
-    <% } else { %>
-    <a href="/login">Login</a> | <a href="/signup">Signup</a>
-    <% } %>
-
-
-    <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
-    <!--SCRIPTS END-->
-  </body>
-</html>
+<h1>Welcome!</h1>
+<% if (req.session.me) { %>
+<a href="/logout">Logout</a>
+<% } else { %>
+<a href="/login">Login</a> or <br> <a href="/signup">Signup</a> to get started.
+<% } %>
+</center>
+</div>

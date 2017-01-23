@@ -2,6 +2,7 @@ module.exports.routes = {
 
   // HTML Views
   '/': { view: 'homepage' },
+  'get /galaxy': {view: 'galaxy'},
   'get /login': { view: 'user/login' },
   'get /signup': { view: 'user/signup' },
   '/welcome': { view: 'user/welcome' },

@@ -28,3 +28,150 @@
 // @import 'pages/signup.less';
 //
 // etc.
+
+
+
+body {
+  font-family: helvetica, sans-serif;
+  font-size: 24px;
+  color: #FFFFFF;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  min-height: 100%;
+  background-image: url("/images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: auto;
+}
+#cy {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  overflow-z: hidden;
+  overflow-y: hidden;
+  }
+
+h1 {
+  opacity: 0.5;
+  font-size: 25px;
+  color: #FFFFFF;
+  }
+header {
+/*  border: 1px solid #d4d4d4; */
+  background-image: linear-gradient(to bottom, white, #f2f2f2);
+  background-color: #f9f9f9;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+ul.nav li {
+  display: inline;
+}
+div.form-group {
+  display: inline;
+}
+
+ul.nav li a {
+  padding: 10px 15px 10px;
+  color: #777777;
+  text-decoration: none;
+  text-shadow: 0 1px 0 white;
+}
+input {
+  color:#b94a48;
+}
+p {
+  font-size: 14px;
+  color: #f9f9f9;
+}
+div {
+  background-color: black;
+  height: 20%;
+  width: 40%;
+  border-radius: 4px;
+  border: 1px solid #fbeed5;
+}
+form {
+text-align: left;
+}
+form input {
+float: right;
+}
+#data {
+  background-color: #3b3b3b;
+  border-radius: 4px;
+  border: 1px solid #fbeed5;
+}
+.black_overlay{
+display: none;
+position: absolute;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+background-color: black;
+z-index:1001;
+-moz-opacity: 0.8;
+opacity:.80;
+filter: alpha(opacity=80);
+}
+.white_content {
+display: none;
+position: absolute;
+top: 25%;
+left: 25%;
+width: 35%;
+height: 35%;
+padding: 10px;
+border: 8px solid grey;
+background-color: black;
+z-index:1002;
+overflow: auto;
+border-radius: 4px;
+}
+.close {
+float: right;
+cursor: pointer;
+color: white;
+border: 1px solid #AEAEAE;
+border-radius: 30px;
+background: #605F61;
+font-size: 31px;
+font-weight: bold;
+display: inline-block;
+line-height: 0px;
+padding: 11px 3px;
+}
+.close:before{
+ content: "×";
+}
+#global-hud-top{
+  padding-right: 20px;
+  position:absolute;
+  top: 0px;
+  right: 0px;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1000;
+  text-size: 0.5em;
+}
+#global-hud-bottom{
+  padding-right: 20px;
+  position:absolute;
+  bottom:0;
+  right:0;
+  background-color: black;
+  opacity: 0.5;
+  text-align: right;
+  z-index: 1000;
+  text-size: 0.5em;
+}
