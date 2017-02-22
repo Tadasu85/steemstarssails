@@ -1,0 +1,14 @@
+<h1 id="main-title">Hi <%= user.name %>,</h1>
+ 
+<p>You've successfully logged in.</p>
+<a class="btn" href="/logout">Logout</a>
+ 
+<h2>User Model</h2>
+<table class="table">
+  <% for(key in user.toJSON() ) { if (user.hasOwnProperty(key)) { %>
+  <tr>
+    <td><%= key %>:</td>
+    <td class="boxy"><%= user[key] %></td>
+  </tr>
+  <% }} %>
+</table>

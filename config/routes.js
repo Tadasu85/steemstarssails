@@ -1,14 +1,8 @@
 module.exports.routes = {
 
   // HTML Views
-  '/': { view: 'homepage' },
-  'get /galaxy': {view: 'galaxy'},
-  'get /login': { view: 'user/login' },
-  'get /signup': { view: 'user/signup' },
-  '/welcome': { view: 'user/welcome' },
-
-  // Endpoints
-  'post /login': 'UserController.login',
-  'post /signup': 'UserController.signup',
-  '/logout': 'UserController.logout',
+  '/': {view: 'homepage' },
+  '/galaxy': {view: 'galaxy'},
+  'GET /login': {view: 'login'},
+  'GET /signup': {view: 'signup'}
 };

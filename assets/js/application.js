@@ -4,11 +4,12 @@ var gotfollows;
 var gotalldata;
 var cy;
 
+steemaccount = "raymonjohnstone";
 document.addEventListener("DOMContentLoaded", function(event) {
 gotfollowers = false;
 gotfollows = false;
 gotalldata = false;
-steemaccount = "raymonjohnstone"; //window.currentUser.steemaccount.toString().toLowerCase();
+ //window.currentUser.steemaccount.toString().toLowerCase();
 // steem.api.getAccounts(['ned', 'dan'], function(err, response){
 //     console.log(err, response);
 // });
@@ -51,7 +52,16 @@ var cy = window.cy = cytoscape({
                 'background-opacity': 0.6,
                 'min-zoomed-font-size': 16
             }
-        }, {
+        },
+        {
+            selector: 'edge',
+            style: {
+                'line-color': '#FFFF',
+                'width': 1,
+                'opacity': 0.4
+            }
+           },
+        {
             selector: '.followers',
             style: {
                 'background-color': 'yellow',
@@ -65,14 +75,7 @@ var cy = window.cy = cytoscape({
                 'shadow-blur': 10,
                 'background-opacity': 0.6
             }
-        }, {
-            selector: 'edge',
-            style: {
-                'line-color': '#FFFF',
-                'width': 1,
-                'opacity': 0.4
-            }
-           },
+        }, 
            {
             selector: '.mutual',
             style: {
@@ -149,7 +152,9 @@ var selectedNode = event.cyTarget.attr("id");
     selector: '.parent',
     onClickFunction: function (event) {
     selectedNode = event.cyTarget.attr("id");
-    Turbolinks.visit(/accounts/ + selectedNode);
+    $("#jigonsaseh-data").html("<center>" +event.cyTarget.attr("id").toUpperCase()+"</center>");
+    document.getElementById('jigonsaseh').style.display='block';
+    document.getElementById('fade').style.display='block';
   }
 
   },
@@ -186,52 +191,18 @@ $('input#closejigonsaseh').on("click", function closelegend(event) {
 document.getElementById('jigonsaseh').style.display='none';
 document.getElementById('fade').style.display='none';
 });
-
-addFollowers();
-function loadingLoop1(){
-if(gotfollowers){
-addFollows();
-}
-else{
-    setTimeout(function(){ loadingLoop1(); }, 250);
-}
-}
-loadingLoop1();
-function loadingLoop2(){
-if(gotfollowers & gotfollows){
-    gotalldata = true;
-    var currentNode = cy.collection('.mutual');
-    currentNode.connectedEdges().addClass('mutualedge');
-    //console.log("Completed getting data");
-}
-else{
-    setTimeout(function(){ loadingLoop2(); }, 250);
-}
-}
-loadingLoop2();
-function loadingLoop3(){
-if(gotalldata) {
-    gotfollowers = false;
-    gotfollows = false;
-cy.getElementById(steemaccount).addClass('parent');
-cy.nodes('.parent').position('x', 875);
-cy.nodes('.parent').position('y', 875);
-cy.layout({name: 'cola', stop: function(){}});
-}
-else{
-    setTimeout(function(){loadingLoop3();}, 500);
-}
-}
-
-loadingLoop3();
-//cy.on('tap', function(evt){
-//  console.log( 'tap ' + evt.cyTarget.id() );
-//});
 configureHUD();
-setTimeout(function(){addEdges();}, 2000);
+addFollowers();
+addFollows();
+addEdges();
+
+//cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
+
+setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); }, 250);
 
 });
 function addFollowers(){
+cy.getElementById(steemaccount).addClass('parent');
 //console.log("adding followers");
 steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
    cy.startBatch();
@@ -247,6 +218,7 @@ steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
 });
 }
 function addFollows(){
+
 steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
 //console.log("adding follows");
 //$.getJSON('/accounts/' + steemaccount + '/follows.json', function(followS) {
@@ -270,7 +242,7 @@ steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
     });
 }
 function addEdges(){
-console.log("adding edges");
+//console.log("adding edges");
 cy.startBatch();
 cy.nodes().forEach(function( ele ){
 steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
@@ -279,10 +251,10 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
            var obj = result[i].following;
                if (cy.getElementById(obj).length==1){
                    cy.add({group: "edges", data: {source: obj, target: ele.id()}}).addClass('secondrelative');
-               };
-        };
-        console.log(ele.id());
-        console.log(err, result);
+               }
+        }
+        //console.log(ele.id());
+        //console.log(err, result);
        
         });
     });

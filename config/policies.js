@@ -17,14 +17,24 @@
  */
 
 
-module.exports.policies = {
 
-  '*': true,
 
-  UserController: {
-    '*': 'isAuthenticated',
-    login: true,
-    signup: true
-  }
-
-};
+  module.exports.policies = {
+  
+  '*': [
+  'basicAuth',
+  'passport',
+  'sessionAuth',
+  'ModelPolicy',
+  'AuditPolicy',
+  'OwnerPolicy',
+  'PermissionPolicy',
+  'RolePolicy',
+  'CriteriaPolicy'
+  ],
+  
+  AuthController: {
+  '*': ['passport']
+  },
+  
+  };
