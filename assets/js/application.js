@@ -1,27 +1,9 @@
 var steemaccount;
-var gotfollowers;
-var gotfollows;
-var gotalldata;
 var cy;
 
-steemaccount = "raymonjohnstone";
+steemaccount = 'raymonjohnstone';
 document.addEventListener("DOMContentLoaded", function(event) {
-gotfollowers = false;
-gotfollows = false;
-gotalldata = false;
- //window.currentUser.steemaccount.toString().toLowerCase();
-// steem.api.getAccounts(['ned', 'dan'], function(err, response){
-//     console.log(err, response);
-// });
-// steem.api.getDynamicGlobalProperties(function(err, result) {
-//     console.log(err, result);
-// });
-// steem.api.getAccountCount(function(err, result) {
-//     console.log(err, result);
-// });
-// steem.api.getFollowers("raymonjohnstone", 1, "blog", 1, function(err, result) {
-//     console.log(err, result);
-// });
+
 var cy = window.cy = cytoscape({
     
     container: document.getElementById('cy'),
@@ -198,13 +180,14 @@ addEdges();
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 
-setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); }, 250);
+setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); }, 750);
 
 });
 function addFollowers(){
 cy.getElementById(steemaccount).addClass('parent');
 //console.log("adding followers");
 steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
+//console.log(err + result);
    cy.startBatch();
    for (var i = 0; i < result.length; i++) {
        var obj = result[i].follower;
@@ -220,7 +203,7 @@ steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
 function addFollows(){
 
 steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
-//console.log("adding follows");
+//console.log(err + "adding follows");
 //$.getJSON('/accounts/' + steemaccount + '/follows.json', function(followS) {
           cy.startBatch();
            //for (var prop in followS) {

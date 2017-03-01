@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "Steemstars is a game driven on pure steem! steemit.com",
-  "keywords": [],
+  "keywords": ["game","games","gaming","realtime","strategy","augmented","social","network","steem","blockchain"],
   "engines": {
     "node": ">=7.6.0"
   },
@@ -25,8 +25,10 @@
     "rc": "~0.5.0",
     "sails": "~0.12.11",
     "sails-disk": "~0.10.0",
-    "sails-mongo": "^0.11.*"
-    },
+    "sails-mongo": "^0.11.*",
+    "steem": "^0.4.8",
+    "steemconnect": "0.0.33"
+  },
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js"

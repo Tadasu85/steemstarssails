@@ -10,6 +10,5 @@
  */
 
 module.exports.bootstrap = function(cb) {
-
-  cb();
+        cb();
 };

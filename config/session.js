@@ -67,11 +67,11 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-   adapter: 'mongo',
+   /*adapter: 'mongo',
    host: 'localhost',
    port: 27017,
    db: 'steemstars_mongo',
-   collection: 'sessions',
+   collection: 'sessions',*/
 
   /***************************************************************************
   *                                                                          *
