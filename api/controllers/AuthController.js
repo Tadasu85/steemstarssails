@@ -1,12 +1,38 @@
+var passport = require('passport');
+
 module.exports = {
-index: function(req,res){
-res.view({
-  user: req.user
-});
-},
-galaxy: function(req,res){
-res.view({
-  user: req.user
-});
-}
+
+    _config: {
+        actions: false,
+        shortcuts: false,
+        rest: false
+    },
+
+    login: function(req, res) {
+
+        passport.authenticate('local', function(err, user, info) {
+            if ((err) || (!user)) {
+                return res.redirect('/user/profile');
+                /*return res.send({
+                    message: info.message,
+                    user: user
+                });*/
+            }
+            req.logIn(user, function(err) {
+                if (err) res.send(err);
+                return res.redirect('/user/profile');
+                /*return res.send({
+                    message: info.message,
+                    user: user
+                    
+                });*/
+            });
+
+        })(req, res);
+    },
+
+    logout: function(req, res) {
+        req.logout();
+        res.redirect('/');
+    }
 };

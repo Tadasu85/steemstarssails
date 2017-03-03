@@ -2,8 +2,13 @@ module.exports.routes = {
 
   // HTML Views
   '/': {view: 'homepage' },
-  'GET /profile': {view: 'auth/index'},
-  'GET /galaxy': {view: 'auth/galaxy'},
+  'GET /user/profile': {view: 'user/index'},
+  'GET /user/galaxy': {view: 'user/galaxy'},
   'GET /login': {view: 'login'},
-  'GET /signup': {view: 'signup'}
+  'GET /signup': {view: 'signup'},
+  //Actions:
+  'POST /login': 'AuthController.login',
+  '/logout': 'AuthController.logout'
+  
 };
+

@@ -176,11 +176,11 @@ document.getElementById('fade').style.display='none';
 configureHUD();
 addFollowers();
 addFollows();
-addEdges();
+
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 
-setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); }, 750);
+setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); addEdges(); }, 5000);
 
 });
 function addFollowers(){
@@ -191,7 +191,7 @@ steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
    cy.startBatch();
    for (var i = 0; i < result.length; i++) {
        var obj = result[i].follower;
-       cy.add({group: "nodes", data: {id: obj, label: obj}, weight: 100, position: {}});
+       cy.add({group: "nodes", data: {id: obj, label: obj}, weight: 0, position: {}});
        cy.add({group: "edges", data: {source: obj, target: steemaccount}}).addClass('followersedge');
        cy.getElementById(obj).addClass('followers');
         }
@@ -210,13 +210,13 @@ steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
            for (var i = 0; i < result.length; i++) {
            var obj = result[i].following;
                if (cy.getElementById(obj).length==0){
-               cy.add({group: "nodes", data: {id: obj, label: obj}, weight: 500, position: {}});
+               cy.add({group: "nodes", data: {id: obj, label: obj}, weight: 0, position: {}});
                cy.add({group: "edges", data: {source: obj, target: steemaccount}}).addClass('followsedge');
                cy.getElementById(obj).addClass('follows');
                }
                else {
                cy.getElementById(obj).addClass('mutual');
-               cy.getElementById(obj).data('weight', '1000');
+               cy.getElementById(obj).data('weight', '0');
                cy.getElementById(obj).removeClass('followers')}
                }
            cy.endBatch();
@@ -236,10 +236,11 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
                    cy.add({group: "edges", data: {source: obj, target: ele.id()}}).addClass('secondrelative');
                }
         }
-        //console.log(ele.id());
-        //console.log(err, result);
+        console.log(ele.id());
+        console.log(err, result);
        
         });
+        console.log(ele);
     });
     cy.endBatch();
 }

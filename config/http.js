@@ -21,7 +21,9 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-  // middleware: {
+ middleware: {
+   passportInit    : require('passport').initialize(),
+   passportSession : require('passport').session(),
 
   /***************************************************************************
   *                                                                          *
@@ -34,6 +36,8 @@ module.exports.http = {
     'startRequestTimer',
     'cookieParser',
     'session',
+    'passportInit',     
+    'passportSession', 
     'myRequestLogger',
     'bodyParser',
     'handleBodyParserError',
@@ -82,6 +86,6 @@ module.exports.http = {
   * since that's the only time Express will cache flat-files.                *
   *                                                                          *
   ***************************************************************************/
-
+}
   // cache: 31557600000
 };
