@@ -1,7 +1,7 @@
 var steemaccount;
 var cy;
 
-steemaccount = 'raymonjohnstone';
+steemaccount = user;
 document.addEventListener("DOMContentLoaded", function(event) {
 
 var cy = window.cy = cytoscape({
