@@ -4,10 +4,17 @@
 Banner created by @renzoarg
 
 <h1>Welcome!</h1>
-<% if (req.session.me) { %>
-<a href="/logout">Logout</a>
-<% } else { %>
-<a href="/login">Login</a> or <br> <a href="/signup">Signup</a> to get started.
-<% } %>
+
+<form role="form" action="/login" method="post">
+  <input type="email" name="email" placeholder="Email">
+  <input type="password" name="password" placeholder="Password">
+  <button type="submit">Sign in</button>
+</form>
+<form role="form" action="/signup" method="post">
+  <input type="text" name="username" placeholder="Username">
+  <input type="text" name="email" placeholder="Email">
+  <input type="password" name="password" placeholder="Password">
+  <button type="submit">Sign up</button>
+</form>
 </center>
 </div>
