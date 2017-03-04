@@ -11,4 +11,10 @@
     <td class="boxy"><%= req.user[key] %></td>
   </tr>
   <% }} %>
+<script>
+steem.api.getAccounts([to_string(req.user.username)], function(err, result) {
+    console.log(err, result);
+});
+</script>
+
 </table>

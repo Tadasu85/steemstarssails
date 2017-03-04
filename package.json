@@ -1,7 +1,7 @@
 {
   "name": "steemstars",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.2.1",
   "description": "Steemstars is a game driven on pure steem! steemit.com",
   "keywords": [
     "game",
