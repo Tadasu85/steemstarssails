@@ -28,6 +28,7 @@
   *                                                                          *
   ***************************************************************************/
    '*': true,
+   'messages': 'MessagesPolicy',
 
   'GameController': {
     '*': 'isAuthenticated'

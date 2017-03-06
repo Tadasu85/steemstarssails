@@ -1,9 +1,9 @@
-var steemaccount;
+var steemaccount = "";
 var cy;
 
-steemaccount = user;
-document.addEventListener("DOMContentLoaded", function(event) {
 
+document.addEventListener("DOMContentLoaded", function(event) {
+if(window.cy){
 var cy = window.cy = cytoscape({
     
     container: document.getElementById('cy'),
@@ -181,7 +181,7 @@ addFollows();
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 
 setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); addEdges(); }, 5000);
-
+}
 });
 function addFollowers(){
 cy.getElementById(steemaccount).addClass('parent');

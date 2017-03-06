@@ -1,8 +1,7 @@
 {
 "generators": {
 "modules": {
-"auth-api": "sails-auth/generator",
-"permissions-api": "sails-permissions/generator"
+
 }
 }
 }

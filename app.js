@@ -19,6 +19,7 @@
  */
 
 // Ensure a "sails" can be located:
+require("coffee-script");
 (function() {
   var sails;
   try {

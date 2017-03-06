@@ -9,7 +9,8 @@ module.exports.routes = {
   //Actions:
   'POST /login': 'AuthController.login',
   'POST /signup': 'UserController.create',
-  '/logout': 'AuthController.logout'
+  '/logout': 'AuthController.logout',
+  'GET/game' : {controller: 'game', action: 'game'}
   
 };
 
