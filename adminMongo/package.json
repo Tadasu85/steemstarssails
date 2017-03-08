@@ -1,0 +1,172 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "admin-mongo",
+        "scope": null,
+        "escapedName": "admin-mongo",
+        "name": "admin-mongo",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/ubuntu/workspace"
+    ]
+  ],
+  "_from": "admin-mongo@latest",
+  "_id": "admin-mongo@0.0.22",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/admin-mongo",
+  "_nodeVersion": "6.0.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/admin-mongo-0.0.22.tgz_1485492173362_0.012746329186484218"
+  },
+  "_npmUser": {
+    "name": "mrvautin",
+    "email": "mark_moffat@outlook.com"
+  },
+  "_npmVersion": "3.8.6",
+  "_phantomChildren": {
+    "basic-auth": "1.0.4",
+    "buffer-shims": "1.0.0",
+    "content-type": "1.0.2",
+    "cookie-signature": "1.0.6",
+    "core-util-is": "1.0.2",
+    "inherits": "2.0.3",
+    "isarray": "1.0.0",
+    "on-finished": "2.3.0",
+    "on-headers": "1.0.1",
+    "process-nextick-args": "1.0.7",
+    "require_optional": "1.0.0",
+    "statuses": "1.3.1",
+    "string_decoder": "0.10.31",
+    "type-is": "1.6.14",
+    "unpipe": "1.0.0",
+    "util-deprecate": "1.0.2"
+  },
+  "_requested": {
+    "raw": "admin-mongo",
+    "scope": null,
+    "escapedName": "admin-mongo",
+    "name": "admin-mongo",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/admin-mongo/-/admin-mongo-0.0.22.tgz",
+  "_shasum": "7338831438fe38c1d99cc1f4d62c509981b78efb",
+  "_shrinkwrap": null,
+  "_spec": "admin-mongo",
+  "_where": "/home/ubuntu/workspace",
+  "author": {
+    "name": "Mark Moffat",
+    "email": "mrvautin@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/mrvautin/adminmongo/issues"
+  },
+  "dependencies": {
+    "async": "^2.0.0",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "config": "^1.21.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.0",
+    "font-awesome": "^4.6.3",
+    "hbs": "^4.0.0",
+    "i18n-2": "^0.6.3",
+    "jquery": "^3.1.0",
+    "junk": "^2.0.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.14.1",
+    "mongo-uri": "^0.1.2",
+    "mongodb": "^2.2.4",
+    "mongodb-backup": "^1.6.4",
+    "mongodb-extended-json": "^1.7.0",
+    "mongodb-restore": "^1.5.4",
+    "morgan": "~1.7.0",
+    "nconf": "^0.8.4",
+    "ncp": "^2.0.0",
+    "nedb": "^1.8.0",
+    "node-delete": "^0.1.2",
+    "serve-favicon": "~2.3.0"
+  },
+  "description": "A Web user interface to administer MongoDB databases built using Express",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "colors": "^1.1.2",
+    "electron-prebuilt": "^1.2.8",
+    "eslint": "^3.2.0",
+    "eslint-config-standard": "^5.3.5",
+    "eslint-plugin-promise": "^2.0.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "jsdom": "^9.4.1",
+    "mocha": "^2.5.3",
+    "mocha-jsdom": "^1.1.0",
+    "supertest": "^1.2.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "7338831438fe38c1d99cc1f4d62c509981b78efb",
+    "tarball": "https://registry.npmjs.org/admin-mongo/-/admin-mongo-0.0.22.tgz"
+  },
+  "gitHead": "ed8a8f2b9b8622f57f7b34b60da6135aff57e8c1",
+  "homepage": "https://github.com/mrvautin/adminmongo#readme",
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "admin",
+    "web",
+    "ui",
+    "UI",
+    "gui",
+    "GUI",
+    "DB",
+    "database",
+    "user",
+    "manage",
+    "manager",
+    "administer",
+    "interface",
+    "document",
+    "collection",
+    "express",
+    "electron",
+    "cross platform",
+    "open source",
+    "admin-mongo",
+    "adminmongo"
+  ],
+  "license": "MIT",
+  "main": "electron.js",
+  "maintainers": [
+    {
+      "name": "mrvautin",
+      "email": "mrvautin@gmail.com"
+    }
+  ],
+  "name": "admin-mongo",
+  "optionalDependencies": {},
+  "private": false,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrvautin/adminmongo.git"
+  },
+  "scripts": {
+    "packageLinux": "electron-packager ./ adminMongo --out=releases/ --platform=linux --arch=ia32 --prune --overwrite --ignore=releases/* --icon=public/logo.ico",
+    "packageOsx": "electron-packager ./ adminMongo --out=releases/ --platform=darwin --arch=x64 --prune --overwrite --ignore=releases/* --icon=public/logo.icns",
+    "packageWin32": "electron-packager ./ adminMongo --out=releases/ --platform=win32 --arch=ia32 --prune --overwrite --ignore=releases/* --icon=public/logo.ico",
+    "start": "node app.js",
+    "test": "find ./tests -name '*.js' | xargs mocha -R spec -t 5000"
+  },
+  "version": "0.0.22"
+}

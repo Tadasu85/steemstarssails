@@ -1,9 +1,6 @@
 var sails = sails || {};
 
 (function (sails) {
-  sails.Main = Backbone.Model.extend({
-    urlRoot: '/',
-  });
   sails.User = Backbone.Model.extend({
     urlRoot: '/user',
   });
