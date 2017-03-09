@@ -180,7 +180,7 @@ addFollows();
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 
-setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}}); addEdges(); }, 5000);
+setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}});  }, 5000);
 
 });
 function addFollowers(){
@@ -236,11 +236,11 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
                    cy.add({group: "edges", data: {source: obj, target: ele.id()}}).addClass('secondrelative');
                }
         }
-        console.log(ele.id());
-        console.log(err, result);
+        //console.log(ele.id());
+       // console.log(err, result);
        
         });
-        console.log(ele);
+        //console.log(ele);
     });
     cy.endBatch();
 }

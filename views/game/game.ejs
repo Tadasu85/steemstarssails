@@ -1,0 +1,51 @@
+<center>
+    <h1>Planet</h1>
+<form role="form" action="/planet" method="post">
+  <input type="name" name="name" placeholder="Planet Name">
+  <input type="x_coord" name="x_coord" placeholder="x_coord">
+  <input type="y_coord" name="y_coord" placeholder="y_coord">
+  <input type="owner" name="owner" placeholder="Owner _id">
+  <button type="submit">Post</button>
+</form>
+    <h1>Game</h1>
+<form role="form" action="/Game" method="post">
+  <input type="name" name="name" placeholder="Game Name">
+  
+  <button type="submit">Post</button>
+</form>
+
+<div id="user-view">
+
+  <label>Username: <input type="text" username="name" class="username"></label>
+  <button class="save">Save</button>
+</div>
+
+<script>
+var UserView = Backbone.View.extend({
+  el: '#user-view',
+
+  events: {
+    'change .name': 'onChangeName',
+    'click .save': 'onSave'
+  },
+
+  onChangeName: function(evt) {
+    this.model.set('name', evt.currentTarget.value);
+  },
+
+  onSave: function(evt) {
+    this.model.save();
+  }
+});
+
+var userView = new UserView({model: new UserModel()});
+</script>
+  
+
+    <div class="button1" id="myButtons">
+  <button class="first" class="button-up">Go Up</button>
+  <button class="last" class="button-down">Go Down</button>
+  </div>
+</div>
+
+</center>

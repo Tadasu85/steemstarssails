@@ -1,15 +1,29 @@
-var sails = sails || {};
+var UserModel = Backbone.Model.extend({
+  url: '/user',
+  defaults: {
+    username: '',
+    email: ''
+  }
+});
 
-(function (sails) {
-  sails.User = Backbone.Model.extend({
-    urlRoot: '/user',
-  });
-  sails.Messages = Backbone.Model.extend({
-    urlRoot: '/messages',
-  });
-  sails.Game = Backbone.Model.extend({
-    urlRoot: '/game',
-  });
+var UserView = Backbone.View.extend({
+  el: '#user-view',
 
- 
-})(io.sails);
+  initialize: function() {
+    this.listenTo(this.model, 'sync change', this.render);
+    this.model.fetch();
+    this.render();
+  },
+
+  render: function() {
+    var html = '<b>Username:</b> ' + this.model.get('username');
+    html += ', email: ' + this.model.get('email');
+    this.$el.html(html);
+    return this;
+  }
+});
+
+var user = new UserModel();
+var userView = new UserView({model: user});
+var tmplText = $('#user-item-tmpl').html();
+var userTmpl = _.template(tmplText);

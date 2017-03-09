@@ -8,7 +8,23 @@
 module.exports = {
 
   attributes: {
-
+  name: 'string',
+    
+  
+  planets: {
+            collection: 'planet',
+            via: 'owner'
+        },
+  edges: {
+            collection: 'edge',
+            via: 'owner'
+        },
+  ships: {
+            collection: 'ship',
+            via: 'owner'
+        },
   }
+  
+  
 };
 
