@@ -30,7 +30,7 @@
    '*': true,
    'messages': 'MessagesPolicy',
 
-  'GameController': {
+  'PermissionController': {
     '*': 'isAuthenticated'
   },
 

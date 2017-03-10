@@ -6,8 +6,6 @@
  */
 
 module.exports = {
-	/*game: function (req, res) {
-        res.view();
-    }*/
+	
 };
 

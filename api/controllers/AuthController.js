@@ -20,7 +20,7 @@ module.exports = {
             }
             req.logIn(user, function(err) {
                 if (err) res.send(err);
-                return res.redirect('/game/profile');
+                return res.redirect('/permission/profile');
                /* return res.send({
                     message: info.message,
                     user: user
