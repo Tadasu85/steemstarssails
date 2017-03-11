@@ -173,10 +173,10 @@ $('input#closejigonsaseh').on("click", function closelegend(event) {
 document.getElementById('jigonsaseh').style.display='none';
 document.getElementById('fade').style.display='none';
 });
-configureHUD();
+/*configureHUD();
 addFollowers();
 addFollows();
-
+*/
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 

@@ -28,18 +28,19 @@ var UserView = Backbone.View.extend({
 var user = new UserModel();
 var userView = new UserView({model: user});
 
-//Game Model
+//Game Collection
 
 var GameCollection = Backbone.Collection.extend({
   url: '/game',
   defaults: {
-    planets: {},
-    edges: {},
-    ships: {},
     name: '',
     createdAt: '',
     updatedAt: '',
-    id: ''
+    id: '',
+    planets: {},
+    edges: {},
+    ships: {}
+    
   }
 });
 
@@ -69,3 +70,4 @@ var GameView = Backbone.View.extend({
 
 var game = new GameCollection();
 var gameView = new GameView({collection: game});
+
