@@ -1,8 +1,11 @@
+
+
 var steemaccount = "";
 var cy;
 
-
 document.addEventListener("DOMContentLoaded", function(event) {
+
+if (window.location.pathname=='/permission/galaxy') {
 
 var cy = window.cy = cytoscape({
     
@@ -173,15 +176,16 @@ $('input#closejigonsaseh').on("click", function closelegend(event) {
 document.getElementById('jigonsaseh').style.display='none';
 document.getElementById('fade').style.display='none';
 });
-/*configureHUD();
+configureHUD();
 addFollowers();
 addFollows();
-*/
+
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 
 setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}});  }, 5000);
 
+}
 });
 function addFollowers(){
 cy.getElementById(steemaccount).addClass('parent');
@@ -269,16 +273,19 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 });
 
 }
-// function testing(){
 
-// steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result1) {
-//     console.log(err, result1);
-    
-//     if (result1.length==100){
-//         steem.api.getFollowers(steemaccount, result1[99].follower, "blog", 100, function(err, result2) {
-//         console.log(err, result2);
-//         });        
-//     }
-
-// });
-// }
+function testing(){
+$.getJSON( "/game", function( result ) {
+  cy.startBatch();
+    for (var i = 0; i < result[0].planets.length; i++) {
+        var obj = result[0].planets[i];
+        var x_coord = result[0].planets[i].x_coord;
+        var y_coord = result[0].planets[i].y_coord;
+        console.log(x_coord);
+        console.log(y_coord);
+  
+        cy.add({group: "nodes", data: {id: obj.name, label: obj.name}, position: { x: x_coord, y: y_coord}});
+    }
+    cy.endBatch();
+});
+}
