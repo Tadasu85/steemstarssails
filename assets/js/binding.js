@@ -2,10 +2,7 @@
 
 var UserModel = Backbone.Model.extend({
   url: '/user',
-  defaults: {
-    username: '',
-    email: ''
-  }
+  
 });
 
 var UserView = Backbone.View.extend({

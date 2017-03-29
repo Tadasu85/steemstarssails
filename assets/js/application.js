@@ -1,5 +1,3 @@
-
-
 var steemaccount = "";
 var cy;
 
@@ -176,9 +174,9 @@ $('input#closejigonsaseh').on("click", function closelegend(event) {
 document.getElementById('jigonsaseh').style.display='none';
 document.getElementById('fade').style.display='none';
 });
-configureHUD();
-addFollowers();
-addFollows();
+//configureHUD();
+//addFollowers();
+//addFollows();
 
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
@@ -275,17 +273,13 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 }
 
 function testing(){
-$.getJSON( "/game", function( result ) {
-  cy.startBatch();
-    for (var i = 0; i < result[0].planets.length; i++) {
-        var obj = result[0].planets[i];
-        var x_coord = result[0].planets[i].x_coord;
-        var y_coord = result[0].planets[i].y_coord;
-        console.log(x_coord);
-        console.log(y_coord);
-  
-        cy.add({group: "nodes", data: {id: obj.name, label: obj.name}, position: { x: x_coord, y: y_coord}});
-    }
-    cy.endBatch();
-});
+$.getJSON('/planet', function(data) {
+        cy.startBatch();
+        console.log(data);
+        $.each(data, function(index) {
+            console.log(index);
+            cy.add({group: "nodes", data: {id: data[index].id, label: data[index].name}, position: {}});
+        });
+        cy.endBatch();
+    });
 }

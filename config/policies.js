@@ -28,7 +28,7 @@
   *                                                                          *
   ***************************************************************************/
    '*': true,
-   'messages': 'MessagesPolicy',
+  'messages': 'MessagesPolicy',
 
   'PermissionController': {
     '*': 'isAuthenticated'
