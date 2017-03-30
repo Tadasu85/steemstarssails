@@ -15,20 +15,25 @@
   <div id="content"></div>
 
 <script>
-var username = '<%= req.user.username %>';
-steem.api.getAccounts([(username)], function(err, result) {
-    console.log(result);
-    console.log(err);
-    
-      
-});
+
 function hndlr(result) {
       for (var i = 0; i < result.items.length; i++) {
         var item = result.items[i];
         // in production code, item.htmlTitle should have the HTML entities escaped.
         document.getElementById("content").innerHTML += "<br>" + item.name;
       }
+      
     }
+    var username = '<%= req.user.username %>';
+    steem.api.getAccounts([(username)], function(err, result) {
+    $.each(result, function(key, value){
+    $.each(value, function(key, value){
+      document.getElementById("content").innerHTML += "<br>" + key + " : " + value ;
+        //console.log(key, value);
+    });
+  });
+});
+    
 </script>
 
 </table>

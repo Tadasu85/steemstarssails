@@ -125,7 +125,7 @@ menuItems: [
     title: 'View On Steem',
     selector: 'node',
     onClickFunction: function (event) {
-var selectedNode = event.cyTarget.attr("id");
+var selectedNode = event.cyTarget.attr("label");
     window.open('https://steemit.com/@'+selectedNode,'_blank');
     }
   },
@@ -174,9 +174,9 @@ $('input#closejigonsaseh').on("click", function closelegend(event) {
 document.getElementById('jigonsaseh').style.display='none';
 document.getElementById('fade').style.display='none';
 });
-//configureHUD();
-//addFollowers();
-//addFollows();
+configureHUD();
+addFollowers();
+addFollows();
 
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
