@@ -12,7 +12,7 @@ module.exports = {
     x_coord: 'float',
     y_coord: 'float',
     
-    // Add a reference to User
+    // Add a reference to Game
     owner: {
       model: 'game'
     }
