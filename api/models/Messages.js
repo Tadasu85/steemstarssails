@@ -1,15 +1,35 @@
-/**
- * Messages.js
- *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
- */
 
-//Messages Model  
+
 module.exports = {
-    attributes  : {
-        userId: 'STRING',
-        username: 'STRING',
-        message: 'STRING'      
-    }
+attributes: {
+   comment: {type: 'string'},
+   timestamp: {type: 'datetime'}
+}
+};
+
+
+
+module.exports = {
+attributes: {
+   comment: {type: 'string'},
+   timestamp: {type: 'datetime'}
+}
+};
+
+
+
+module.exports = {
+attributes: {
+   comment: {type: 'string'},
+   timestamp: {type: 'datetime'}
+}
+};
+
+
+
+module.exports = {
+attributes: {
+   comment: {type: 'string'},
+   timestamp: {type: 'datetime'}
+}
 };

@@ -87,6 +87,6 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
 test: {
-    adapter: 'sails-mongo'
+    adapter: 'sails-disk'
   }
 };
