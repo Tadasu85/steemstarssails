@@ -1,0 +1,7 @@
+JavaScript: true
+
+exclude_paths:
+- test/**/*
+- vendor/**/*
+- assets/js/dependencies/**/*
+- data/**/*
