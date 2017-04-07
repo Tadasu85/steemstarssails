@@ -17,7 +17,7 @@ before(function (done) {
      );
 });
 
-it('should return all posts with their comments', function (done) {
+it('should return all posts with their messages', function (done) {
    PostService
      .getPostsWithComments()
      .then(function (posts) {
