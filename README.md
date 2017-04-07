@@ -1,5 +1,11 @@
 SteemStars!
 
+<img src="https://github.com/Tadasu85/steemstarssails/blob/master/assets/images/banner.png"></img>
+
+[![Coverage Status](https://coveralls.io/repos/github/Tadasu85/steemstarssails/badge.svg?branch=master)](https://coveralls.io/github/Tadasu85/steemstarssails?branch=master)
+
+[![Build Status](https://travis-ci.org/Tadasu85/steemstarssails.svg?branch=master)](https://travis-ci.org/Tadasu85/steemstarssails)
+
 SteemStars is a game in which we will use the steem blockchain to generate some of our game data.
 
 -Game galaxy is generated from the accounts on the steem blockchain.
@@ -10,4 +16,9 @@ SteemStars is a game in which we will use the steem blockchain to generate some 
 
 If you dont know what the steem network is check it out at https://steemit.com/
 
+The Token that SteemStars! depends on for a funding model can be found here: https://blockscan.com/assetInfo/STEEMSTARS
+
+This is the only funding model that this software/game uses as such if you would like to see further growth of this software you can help by buying this token and using it.
+
 All work herein is free open source I operate under the Collaborative Commons License.
+
