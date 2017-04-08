@@ -68,3 +68,33 @@ var GameView = Backbone.View.extend({
 var game = new GameCollection();
 var gameView = new GameView({collection: game});
 
+//Planet Model
+
+var PlanetCollection = Backbone.Collection.extend({
+  url: '/planet',
+  
+});
+
+var PlanetView = Backbone.View.extend({
+  el: '#planet-view',
+
+  initialize: function() {
+    this.listenTo(this.collection, 'sync change', this.render);
+    this.collection.fetch();
+    this.render();
+  },
+
+  render: function() {
+    var html = '<b>Id:</b> ' + this.collection.get('_id');
+    html += ', name: ' + this.collection.get('name');
+    html += ', x_coord: ' + this.collection.get('x_coord');
+    html += ', y_coord: ' + this.collection.get('y_coord');
+    html += ', owner: ' + this.collection.get('owner');
+    this.$el.html(html);
+    return this;
+  }
+});
+
+var planet = new PlanetCollection();
+var planetView = new PlanetView({collection: planet});
+
