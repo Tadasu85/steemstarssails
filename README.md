@@ -16,9 +16,9 @@ SteemStars is a game in which we will use the steem blockchain to generate some 
 
 If you dont know what the steem network is check it out at https://steemit.com/
 
-The Token that SteemStars! depends on for a funding model can be found here: https://blockscan.com/assetInfo/STEEMSTARS
+The Token that SteemStars! depends on for a funding model can be found here: https://counterpartychain.io/asset/STEEMSTARS
 
-This is the only funding model that this software/game uses as such if you would like to see further growth of this software you can help by buying this token and using it.
+This is one of the funding models that this software/game uses. As such if you would like to see further growth of this software you can help by buying this token and using it.
 
 All work herein is free open source I operate under the Collaborative Commons License.
 

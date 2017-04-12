@@ -16,7 +16,8 @@ module.exports.bootstrap = function(cb) {
 var heart = heartbeats.createHeart(1000);
 
 heart.createEvent(5, function(count, last){
-  console.log('...Every 5 Beats forever');
+    //console.log(count, last);
+  //console.log('...Every 5 Beats forever');
 });
 
 

@@ -8,14 +8,19 @@
 module.exports = {
 
   attributes: {
-    name: 'string',
+    name: {type: 'string', unique: true},
     x_coord: 'float',
     y_coord: 'float',
+    inhabitants: {
+      model: 'population',
+      via: 'location',
+      
+    },
     
     // Add a reference to Game
     owner: {
-      model: 'game'
+      model: 'game',
+      defaultsTo: '58dc05bdd6c3d89b075f9cc9'
     }
   }
 };
-
