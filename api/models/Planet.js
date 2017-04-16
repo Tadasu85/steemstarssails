@@ -12,15 +12,13 @@ module.exports = {
     x_coord: 'float',
     y_coord: 'float',
     inhabitants: {
-      model: 'population',
+      collection: 'population',
       via: 'location',
-      
-    },
+      },
     
     // Add a reference to Game
     owner: {
       model: 'game',
-      defaultsTo: '58dc05bdd6c3d89b075f9cc9'
     }
   }
 };

@@ -12,15 +12,6 @@
 
 module.exports.bootstrap = function(cb) {
         
-// a heart that beats every 1 second. 
-//var heart = heartbeats.createHeart(1000);
-
-/*heart.createEvent(5, function(count, last){
-//console.log(count, last);
-//console.log('...Every 5 Beats forever');
-});*/
-
-
 cb();
 
 };

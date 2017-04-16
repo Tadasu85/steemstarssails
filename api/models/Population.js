@@ -8,8 +8,12 @@
 module.exports = {
 
   attributes: {
-  location: 'string',
-  users: 'string',
+  location: {
+      model: 'planet',
+    },
+  username: {
+      model: 'user',
+    },
   amount: 'float'
   }
 };
