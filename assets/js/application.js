@@ -20,20 +20,20 @@ var cy = window.cy = cytoscape({
     style: [{
         selector: 'node',
             style: {
-                'height': 10,
-                'width': 10,
-                'background-color': 'yellow',
+                'height': 50,
+                'width': 50,
+                'background-color': 'black',
                 'label': 'data(label)',
-                'color': '#FFFFFF',
+                'color': 'red',
                 'text-transform': 'lowercase',
-                'font-size': 12,
+                'font-size': 16,
                 'font-weight': 'bold',
                 'font-style': 'italic',
                 'font-family': '"Times New Roman", Georgia, Serif',
                 'text-shadow-blur': 100,
                 'shadow-blur': 10,
                 'background-opacity': 0.6,
-                'min-zoomed-font-size': 16
+                'min-zoomed-font-size': 25
             }
         },
         {
@@ -175,13 +175,14 @@ document.getElementById('jigonsaseh').style.display='none';
 document.getElementById('fade').style.display='none';
 });
 configureHUD();
-addFollowers();
-addFollows();
+//addFollowers();
+//addFollows();
+//testing();
 
 
 //cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
 
-setTimeout(function(){ cy.layout({name: 'cola', stop: function(){}});  }, 5000);
+setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
 
 }
 });
@@ -273,13 +274,25 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 }
 
 function testing(){
-$.getJSON('/planet', function(data) {
+    io.socket.get('/planet', {limit: 1000}, function(things, jwr) 
+    { 
+        console.log(things, jwr); 
+        cy.startBatch();
+        for (var i = 0; i < things.length; i++) {
+        var obj = things[i];
+        console.log(obj.name + " Added");
+        cy.add({group: "nodes", data: {id: obj.id, label: obj.name}, weight: 0, position: {x:obj.x_coord,y:obj.y_coord}});
+               }
+        cy.endBatch();
+        cy.layout({name: 'preset', stop: function(){}});
+    });
+/*$.getJSON('/planet', function(data) {
         cy.startBatch();
         console.log(data);
         $.each(data, function(index) {
             console.log(index);
-            cy.add({group: "nodes", data: {id: data[index].id, label: data[index].name}, position: {}});
+            cy.add({group: "nodes", data: {id: data[index].id, label: data[index].name}, position: {x:data[index].x_coord , y:data[index].y_coord}});
         });
         cy.endBatch();
-    });
+    });*/
 }
