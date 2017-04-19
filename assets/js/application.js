@@ -15,25 +15,25 @@ var cy = window.cy = cytoscape({
     hideEdgesOnViewport: false,
     zoom: 1,
     pixelRatio: 1,
-    layout: {name: 'cose'},
+    layout: {name: 'preset'},
                 
     style: [{
         selector: 'node',
             style: {
-                'height': 50,
-                'width': 50,
+                'height': 10,
+                'width': 10,
                 'background-color': 'black',
                 'label': 'data(label)',
                 'color': 'red',
                 'text-transform': 'lowercase',
-                'font-size': 16,
+                'font-size': 8,
                 'font-weight': 'bold',
                 'font-style': 'italic',
                 'font-family': '"Times New Roman", Georgia, Serif',
                 'text-shadow-blur': 100,
                 'shadow-blur': 10,
                 'background-opacity': 0.6,
-                'min-zoomed-font-size': 25
+                'min-zoomed-font-size': 6
             }
         },
         {
@@ -146,7 +146,7 @@ var selectedNode = event.cyTarget.attr("label");
     title: 'View Jigonsaseh',
     selector: '.mutual, .followers, .follows', 
     onClickFunction: function (event) {
-    //alert(event.cyTarget.attr("id"));
+    
     $("#jigonsaseh-data").html("<center>" +event.cyTarget.attr("id").toUpperCase()+"</center>");
     document.getElementById('jigonsaseh').style.display='block';
     document.getElementById('fade').style.display='block';
@@ -177,10 +177,10 @@ document.getElementById('fade').style.display='none';
 configureHUD();
 //addFollowers();
 //addFollows();
-//testing();
+testing();
 
 
-//cy.$('.mutual').layout( {name: 'cola', randomize: true, edgeLength: function( node ){ return 10; }});
+
 
 setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
 
@@ -188,9 +188,9 @@ setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000
 });
 function addFollowers(){
 cy.getElementById(steemaccount).addClass('parent');
-//console.log("adding followers");
+
 steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
-//console.log(err + result);
+
    cy.startBatch();
    for (var i = 0; i < result.length; i++) {
        var obj = result[i].follower;
@@ -199,17 +199,16 @@ steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
        cy.getElementById(obj).addClass('followers');
         }
         cy.endBatch();
-        //console.log("Followers:" + followerS.length);
+        
         gotfollowers = true;
 });
 }
 function addFollows(){
 
 steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
-//console.log(err + "adding follows");
-//$.getJSON('/accounts/' + steemaccount + '/follows.json', function(followS) {
+
           cy.startBatch();
-           //for (var prop in followS) {
+           
            for (var i = 0; i < result.length; i++) {
            var obj = result[i].following;
                if (cy.getElementById(obj).length==0){
@@ -223,12 +222,12 @@ steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
                cy.getElementById(obj).removeClass('followers')}
                }
            cy.endBatch();
-           //console.log("Follows:" + followS.length);
+           
            gotfollows = true;
     });
 }
 function addEdges(){
-//console.log("adding edges");
+
 cy.startBatch();
 cy.nodes().forEach(function( ele ){
 steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
@@ -239,11 +238,9 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
                    cy.add({group: "edges", data: {source: obj, target: ele.id()}}).addClass('secondrelative');
                }
         }
-        //console.log(ele.id());
-       // console.log(err, result);
-       
+        
         });
-        //console.log(ele);
+       
     });
     cy.endBatch();
 }
@@ -257,8 +254,18 @@ function configureHUD(){
     var globalPopulation = 0;
     var globalShips = 0;
     var globalEmbassies = 0;
-$("#global-hud-top").html("Research: " + globalResearch+" Power: "+globalPower+" Materials: "+globalMaterials+
+    io.socket.get('/population/?user=' + steemaccount, function gotResponse(body, response){
+        //console.log(body, response);
+        //console.log(steemaccount);
+        globalPopulation = body[0].amount;
+        //console.log(globalPopulation);
+    });
+    
+setTimeout(function(){
+    $("#global-hud-top").html("Research: " + globalResearch+" Power: "+globalPower+" Materials: "+globalMaterials+
 " Population: "+globalPopulation+" Ships: "+globalShips+" Embassies: "+globalEmbassies);
+//console.log(globalPopulation);
+}, 1000);
 
 steem.api.getAccountCount(function(err, result) {
     globalJigs = result;
@@ -274,25 +281,22 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 }
 
 function testing(){
-    io.socket.get('/planet', {limit: 1000}, function(things, jwr) 
+    io.socket.get('/planet', {limit: 5000, skip:0}, function(things, jwr) 
     { 
-        console.log(things, jwr); 
+        //console.log(things); 
         cy.startBatch();
         for (var i = 0; i < things.length; i++) {
         var obj = things[i];
-        console.log(obj.name + " Added");
-        cy.add({group: "nodes", data: {id: obj.id, label: obj.name}, weight: 0, position: {x:obj.x_coord,y:obj.y_coord}});
-               }
+        //console.log(obj.name + " Added");
+        //console.log(obj.x_coord + " X Postition.");
+        //console.log(obj.y_coord + " Y Postition.");
+        cy.add({group: "nodes", data: {id:obj.name,label: obj.name}, weight: 0, position: {x:parseFloat(obj.x_coord),y:parseFloat(obj.y_coord)}, classes: 'background'});
+           }
         cy.endBatch();
-        cy.layout({name: 'preset', stop: function(){}});
+        setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 1000);
+        //io.socket.get('/user', function gotResponse(body, response) {
+        //console.log('Current users: ', body);
+        //});
     });
-/*$.getJSON('/planet', function(data) {
-        cy.startBatch();
-        console.log(data);
-        $.each(data, function(index) {
-            console.log(index);
-            cy.add({group: "nodes", data: {id: data[index].id, label: data[index].name}, position: {x:data[index].x_coord , y:data[index].y_coord}});
-        });
-        cy.endBatch();
-    });*/
+
 }
