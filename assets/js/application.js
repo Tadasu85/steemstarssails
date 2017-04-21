@@ -182,7 +182,7 @@ testing();
 
 
 
-setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
+//setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
 
 }
 });
@@ -281,9 +281,9 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 }
 
 function testing(){
-    io.socket.get('/planet', {limit: 5000, skip:0}, function(things, jwr) 
+    io.socket.get('/planet', {limit: 5, skip:0}, function(things, jwr) 
     { 
-        //console.log(things); 
+        console.log(jwr); 
         cy.startBatch();
         for (var i = 0; i < things.length; i++) {
         var obj = things[i];
@@ -293,10 +293,11 @@ function testing(){
         cy.add({group: "nodes", data: {id:obj.name,label: obj.name}, weight: 0, position: {x:parseFloat(obj.x_coord),y:parseFloat(obj.y_coord)}, classes: 'background'});
            }
         cy.endBatch();
-        setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 1000);
+        setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}}); console.log("done"); }, 1000);
         //io.socket.get('/user', function gotResponse(body, response) {
         //console.log('Current users: ', body);
         //});
+       
     });
 
 }
