@@ -2,7 +2,7 @@
   "name": "steemstars",
   "private": true,
   "version": "0.2.1",
-  "description": "Steemstars is a game driven on pure steem! steemit.com",
+  "description": "Steemstars is a game driven on pure steem! See STEEM Cryptocurrency.",
   "keywords": [
     "game",
     "games",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "admin-mongo": "0.0.22",
+    "async-foreach": "^0.1.3",
     "backbone": "^1.3.3",
     "bcrypt": ">=1.0.2",
     "coffee-script": "^1.12.4",

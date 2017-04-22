@@ -14,26 +14,26 @@ var cy = window.cy = cytoscape({
     textureOnViewport: false,
     hideEdgesOnViewport: false,
     zoom: 1,
-    pixelRatio: 1,
+    pixelRatio: 5,
     layout: {name: 'preset'},
                 
     style: [{
         selector: 'node',
             style: {
-                'height': 10,
-                'width': 10,
+                'height': .25,
+                'width': .25,
                 'background-color': 'black',
                 'label': 'data(label)',
-                'color': 'red',
+                'color': 'black',
                 'text-transform': 'lowercase',
-                'font-size': 8,
-                'font-weight': 'bold',
-                'font-style': 'italic',
+                'font-size': .25,
+                //'font-weight': 'bold',
+                //'font-style': 'italic',
                 'font-family': '"Times New Roman", Georgia, Serif',
-                'text-shadow-blur': 100,
-                'shadow-blur': 10,
+                //'text-shadow-blur': 100,
+                //'shadow-blur': 10,
                 'background-opacity': 0.6,
-                'min-zoomed-font-size': 6
+                //'min-zoomed-font-size': 6
             }
         },
         {
@@ -92,16 +92,16 @@ var cy = window.cy = cytoscape({
             {
             selector: ':selected',
             style: {
-                'height': 20,
-                'width': 20,
+                'height': .75,
+                'width': .75,
                 'label': 'data(label)',
-                'font-size': 18,
-                'color': '#FFFFFF',
+                //'font-size': 18,
+                //'color': '#FFFFFF',
                 'text-transform': 'uppercase',
                 'font-weight': 'bold',
                 'font-style': 'italic',
                 'font-family': '"Times New Roman", Georgia, Serif',
-                'text-shadow-blur': 100,
+                //'text-shadow-blur': 100,
                 'shadow-blur': 10,
                 'background-opacity': 0.6
             }
@@ -281,23 +281,25 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 }
 
 function testing(){
-    io.socket.get('/planet', {limit: 5, skip:0}, function(things, jwr) 
+    io.socket.get('/planet', {limit: 500, skip:500}, function(things, jwr) 
     { 
         console.log(jwr); 
         cy.startBatch();
         for (var i = 0; i < things.length; i++) {
         var obj = things[i];
-        //console.log(obj.name + " Added");
-        //console.log(obj.x_coord + " X Postition.");
-        //console.log(obj.y_coord + " Y Postition.");
         cy.add({group: "nodes", data: {id:obj.name,label: obj.name}, weight: 0, position: {x:parseFloat(obj.x_coord),y:parseFloat(obj.y_coord)}, classes: 'background'});
            }
         cy.endBatch();
         setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}}); console.log("done"); }, 1000);
-        //io.socket.get('/user', function gotResponse(body, response) {
-        //console.log('Current users: ', body);
-        //});
-       
+        
     });
+    forEach(["a","b","c"], function(item, index) {
+  // Only when `this.async` is called does iteration becomes asynchronous. The
+  // loop won't be continued until the `done` function is executed.
+  console.log(item[0]);
+  var done = this.async();
+  // Continue in one second.
+  setTimeout(done, 1000);
+});
 
 }
