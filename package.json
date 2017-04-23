@@ -26,7 +26,6 @@
     "coffee-script": "^1.12.4",
     "crypto": "0.0.3",
     "cytoscape": "^3.0.0",
-    "cytoscape-context-menus": "^2.1.1",
     "cytoscape-cxtmenu": "^2.10.2",
     "cytoscape-qtip": "^2.7.0",
     "ejs": "~0.8.4",
