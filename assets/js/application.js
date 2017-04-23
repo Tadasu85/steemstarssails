@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 if (window.location.pathname=='/permission/galaxy') {
 
 var cy = window.cy = cytoscape({
-    
     container: document.getElementById('cy'),
     boxSelectionEnabled: false,
     autounselectify: false,
@@ -16,34 +15,34 @@ var cy = window.cy = cytoscape({
     zoom: 1,
     pixelRatio: 5,
     layout: {name: 'preset'},
-                
     style: [{
         selector: 'node',
             style: {
                 'height': .25,
                 'width': .25,
-                'background-color': 'black',
+                'background-color': 'white',
                 'label': 'data(label)',
-                'color': 'black',
+                'color': 'white',
                 'text-transform': 'lowercase',
                 'font-size': .25,
-                //'font-weight': 'bold',
-                //'font-style': 'italic',
-                'font-family': '"Times New Roman", Georgia, Serif',
-                //'text-shadow-blur': 100,
-                //'shadow-blur': 10,
+                'font-weight': 'bold',
+                'font-style': 'italic',
+                'letter-spacing': 1,
+                'font-family': '"Courier New", Courier',
+                'text-shadow-blur': 100,
+                'shadow-blur': 10,
                 'background-opacity': 0.6,
-                //'min-zoomed-font-size': 6
+                'min-zoomed-font-size': .5
             }
         },
         {
             selector: 'edge',
             style: {
                 'line-color': '#FFFF',
-                'width': 1,
+                'width': 0.1,
                 'opacity': 0.4
             }
-           },
+        },
         {
             selector: '.followers',
             style: {
@@ -59,7 +58,7 @@ var cy = window.cy = cytoscape({
                 'background-opacity': 0.6
             }
         }, 
-           {
+        {
             selector: '.mutual',
             style: {
                 'background-color': 'green',
@@ -73,8 +72,8 @@ var cy = window.cy = cytoscape({
                 'shadow-blur': 10,
                 'background-opacity': 0.6
             }
-           },
-            {
+        },
+        {
             selector: '.follows',
             style: {
                 'background-color': 'blue',
@@ -88,8 +87,8 @@ var cy = window.cy = cytoscape({
                 'shadow-blur': 10,
                 'background-opacity': 0.6
             }
-            },
-            {
+        },
+        {
             selector: ':selected',
             style: {
                 'height': .75,
@@ -105,8 +104,7 @@ var cy = window.cy = cytoscape({
                 'shadow-blur': 10,
                 'background-opacity': 0.6
             }
-        }
-          ],
+        }],
     elements: [{
             data: {
                 id: steemaccount,
@@ -117,8 +115,8 @@ var cy = window.cy = cytoscape({
             classes: 'background'
               }]
 });
-
-cy.contextMenus({
+var cxtmenuApi = cy.cxtmenu(defaults);
+var MenuOne = cy.contextMenus({
 menuItems: [
 {
     id: 'viewonsteem',
@@ -178,12 +176,36 @@ configureHUD();
 //addFollowers();
 //addFollows();
 testing();
-
-
-
-
 //setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
 
+var defaults = {
+  menuRadius: 100, // the radius of the circular menu in pixels
+  selector: 'node', // elements matching this Cytoscape.js selector will trigger cxtmenus
+  commands: [ // an array of commands to list in the menu or a function that returns the array
+    
+    /*{ // example command
+      fillColor: 'rgba(200, 200, 200, 0.75)', // optional: custom background color for item
+      content: 'a command name' // html/text content to be displayed in the menu
+      select: function(ele){ // a function to execute when the command is selected
+        console.log( ele.id() ) // `ele` holds the reference to the active element
+      }
+    }*/
+    
+  ], // function( ele ){ return [ /*...*/ ] }, // example function for commands
+  fillColor: 'rgba(0, 0, 0, 0.75)', // the background colour of the menu
+  activeFillColor: 'rgba(92, 194, 237, 0.75)', // the colour used to indicate the selected command
+  activePadding: 20, // additional size in pixels for the active command
+  indicatorSize: 24, // the size in pixels of the pointer to the active command
+  separatorWidth: 3, // the empty spacing in pixels between successive commands
+  spotlightPadding: 4, // extra spacing in pixels between the element and the spotlight
+  minSpotlightRadius: 24, // the minimum radius in pixels of the spotlight
+  maxSpotlightRadius: 38, // the maximum radius in pixels of the spotlight
+  openMenuEvents: 'cxttapstart taphold', // space-separated cytoscape events that will open the menu; only `cxttapstart` and/or `taphold` work here
+  itemColor: 'white', // the colour of text in the command's content
+  itemTextShadowColor: 'black', // the text shadow colour of the command's content
+  zIndex: 9999, // the z-index of the ui div
+  atMouse: false // draw menu at mouse position
+};
 }
 });
 function addFollowers(){
@@ -199,12 +221,10 @@ steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
        cy.getElementById(obj).addClass('followers');
         }
         cy.endBatch();
-        
         gotfollowers = true;
 });
 }
 function addFollows(){
-
 steem.api.getFollowing(steemaccount, 0, "blog", 100, function(err, result) {
 
           cy.startBatch();
@@ -281,25 +301,25 @@ steem.api.getDynamicGlobalProperties(function(err, result) {
 }
 
 function testing(){
-    io.socket.get('/planet', {limit: 500, skip:500}, function(things, jwr) 
-    { 
-        console.log(jwr); 
-        cy.startBatch();
-        for (var i = 0; i < things.length; i++) {
-        var obj = things[i];
-        cy.add({group: "nodes", data: {id:obj.name,label: obj.name}, weight: 0, position: {x:parseFloat(obj.x_coord),y:parseFloat(obj.y_coord)}, classes: 'background'});
-           }
-        cy.endBatch();
-        setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}}); console.log("done"); }, 1000);
-        
+    function allDone(notAborted, arr) {
+        console.log("done", notAborted, arr);
+        for(var obj = 0; obj<arr.length;obj++){
+            console.log(arr[obj].name);
+            cy.add({group: "nodes", data: {id: arr[obj].name, label: arr[obj].name}, position: {x: parseFloat(arr[obj].x_coord), y: parseFloat(arr[obj].y_coord)}});
+        }
+        cy.layout({name: 'preset', stop: function(){}});
+    }
+    io.socket.get('/planet', {limit: 10000}, function(things, jwr) 
+    {
+    forEach(things, function(item, index, arr) {
+    //console.log("each", item, index, arr);
+    //console.log(item[0].name);
+    var done = this.async();
+    setTimeout(function() {
+    done();
+    }, 25);
+    }, allDone);
+    
     });
-    forEach(["a","b","c"], function(item, index) {
-  // Only when `this.async` is called does iteration becomes asynchronous. The
-  // loop won't be continued until the `done` function is executed.
-  console.log(item[0]);
-  var done = this.async();
-  // Continue in one second.
-  setTimeout(done, 1000);
-});
-
+   
 }

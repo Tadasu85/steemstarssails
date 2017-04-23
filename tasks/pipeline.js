@@ -7,9 +7,6 @@
  * (Note that you can take advantage of Grunt-style wildcard/glob/splat expressions
  * for matching multiple files.)
  */
-
-
-
 // CSS files to inject in order
 //
 // (if you're using LESS with the built-in default config, you'll want
@@ -28,12 +25,11 @@ var jsFilesToInject = [
   'js/dependencies/jquery.js',
   'js/dependencies/underscore.js',
   'js/dependencies/cytoscape.js',
-  
-  
-
+  'js/dependencies/cytoscape-ctxmenu.js',
+  'js/dependencies/cytoscape-qtip.js',
+  'js/dependencies/cytoscape-context-menus.js',
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
-
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
   'js/**/*.js',
