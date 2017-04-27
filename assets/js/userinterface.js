@@ -2,6 +2,7 @@ var steemaccount = "";
 document.addEventListener("DOMContentLoaded", function(event) {
 if (window.location.pathname=='/permission/galaxy') {
 //Fire and attach CXT menu and items to cytoscape here, define buttons so on.
+setTimeout(function(){
     cy.cxtmenu({
 	selector: 'node',
 	commands: [
@@ -64,9 +65,10 @@ document.getElementById('fade').style.display='none';
 });
 
 //Setup outer UI IE top and bottom heads up displays.
-	
+}, 750);	
 configureHUD();
     }
+
 });
 
 function configureHUD(){
@@ -85,7 +87,7 @@ io.socket.get('/population/?user=' + steemaccount, function gotResponse(body, re
 setTimeout(function(){
 $("#global-hud-top").html("Research: " + globalResearch+" Power: "+globalPower+" Materials: "+globalMaterials+
 " Population: "+globalPopulation+" Ships: "+globalShips+" Embassies: "+globalEmbassies);
-}, 500);
+}, 1000);
 
 steem.api.getAccountCount(function(err, result) {
 globalJigs = result;

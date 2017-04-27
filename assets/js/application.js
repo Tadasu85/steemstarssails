@@ -1,10 +1,23 @@
 var steemaccount = "";
 var cy;
+var home_x_coord;
+var home_y_coord;
+
+
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    
+    io.socket.get('/planet/?name='+steemaccount, {limit: 1}, function(things, jwr) {
+        //console.log(things, jwr);
+        home_x_coord = parseFloat(things[0].x_coord);
+        home_y_coord = parseFloat(things[0].y_coord);
+    });
+    
 
 if (window.location.pathname=='/permission/galaxy') {
+    
+setTimeout(function(){
 
 var cy = window.cy = cytoscape({
     container: document.getElementById('cy'),
@@ -112,15 +125,24 @@ var cy = window.cy = cytoscape({
                 label: steemaccount,
                 
                    },
-            position: { x: 250, y: 250 }, 
+            position: { x: home_x_coord, y: home_y_coord }, 
             classes: 'background'
               }]
 });
+ }, 500);
 testing();
 //setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
 
 }
+
 });
+
+
+
+
+
+
+
 function addFollowers(){
 cy.getElementById(steemaccount).addClass('parent');
 
@@ -182,15 +204,16 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
 
 function testing(){
     function allDone(notAborted, arr) {
-        //console.log("done", notAborted, arr);
+        console.log("done", notAborted, arr);
         for(var obj = 0; obj<arr.length;obj++){
-            //console.log(arr[obj].name);
+            console.log(arr[obj].name);
             cy.add({group: "nodes", data: {id: arr[obj].name, label: arr[obj].name}, position: {x: parseFloat(arr[obj].x_coord), y: parseFloat(arr[obj].y_coord)}});
         }
         cy.layout({name: 'preset', stop: function(){}});
     }
-    io.socket.get('/planet', {limit: 10}, function(things, jwr) 
+    io.socket.get('/planet/?x_coord=' + _.range(home_x_coord, 100), {limit: 1}, function(things, jwr) 
     {
+        console.log(things, jwr);
     forEach(things, function(item, index, arr) {
     //console.log("each", item, index, arr);
     //console.log(item[0].name);

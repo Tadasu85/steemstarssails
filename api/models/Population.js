@@ -14,7 +14,7 @@ module.exports = {
   username: {
       model: 'user',
     },
-  amount: 'float'
+  amount: 'int'
   }
 };
 
