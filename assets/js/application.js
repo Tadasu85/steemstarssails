@@ -8,14 +8,15 @@ var home_y_coord;
 
 document.addEventListener("DOMContentLoaded", function(event) {
     
-    io.socket.get('/planet/?name='+steemaccount, {limit: 1}, function(things, jwr) {
+    
+    
+
+if (window.location.pathname=='/permission/galaxy') {
+io.socket.get('/planet/?name='+steemaccount, {limit: 1}, function(things, jwr) {
         //console.log(things, jwr);
         home_x_coord = parseFloat(things[0].x_coord);
         home_y_coord = parseFloat(things[0].y_coord);
     });
-    
-
-if (window.location.pathname=='/permission/galaxy') {
     
 setTimeout(function(){
 
@@ -211,7 +212,7 @@ function testing(){
         }
         cy.layout({name: 'preset', stop: function(){}});
     }
-    io.socket.get('/planet/?x_coord=' + _.range(home_x_coord, 100), {limit: 1}, function(things, jwr) 
+    io.socket.get('/edge/', {limit: 1000}, function(things, jwr) 
     {
         console.log(things, jwr);
     forEach(things, function(item, index, arr) {
