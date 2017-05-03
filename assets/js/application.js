@@ -134,6 +134,16 @@ var cy = window.cy = cytoscape({
 testing();
 //setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
 
+io.on('connection',function(socket){
+// This event will trigger when any user is connected.
+// You can use 'socket' to emit and receive events.
+socket.on('commend added',function(data){
+// When any connected client emit this event, we will receive it here.
+io.emit('something happend'); // for all.
+socket.broadcast.emit('something happend'); // for all except me.
+});
+});
+
 }
 
 });
@@ -205,23 +215,23 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
 
 function testing(){
     function allDone(notAborted, arr) {
-        console.log("done", notAborted, arr);
+        //console.log("done", notAborted, arr);
         for(var obj = 0; obj<arr.length;obj++){
-            console.log(arr[obj].name);
+            //console.log(arr[obj].name);
             cy.add({group: "nodes", data: {id: arr[obj].name, label: arr[obj].name}, position: {x: parseFloat(arr[obj].x_coord), y: parseFloat(arr[obj].y_coord)}});
         }
         cy.layout({name: 'preset', stop: function(){}});
     }
     io.socket.get('/edge/', {limit: 1000}, function(things, jwr) 
     {
-        console.log(things, jwr);
+        //console.log(things, jwr);
     forEach(things, function(item, index, arr) {
     //console.log("each", item, index, arr);
     //console.log(item[0].name);
     var done = this.async();
     setTimeout(function() {
     done();
-    }, 25);
+    }, 100);
     }, allDone);
     
     });
