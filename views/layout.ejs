@@ -30,12 +30,19 @@
     <!--SCRIPTS END-->
   </head>
   
-    <div id = "AppMenu">
-<center><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+<div id = "AppMenu">
+      <center>
+  
+<a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
 <% if (!req.user) {%>
-|
-<a href="/login"<i class="fa fa-sign-in" aria-hidden="true"></i></a>
+| 
+<form role="form" id='login' action="/login" method="post">
+<input type="email" name="email" placeholder="Email">
+<input type="password" name="password" placeholder="Password">
+<button type="submit">Sign in</button>
+</form>
 <%}%>
+
 <% if (req.user) {%>
 |
 <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>|
@@ -43,8 +50,10 @@
 <a href="/testing"><i class="fa fa-comments" aria-hidden="true"></i>></i></a>|
 <a href="/permission/profile"><i class="fa fa-user-md" aria-hidden="true"></i></a>
 <%}%>
+
 </center>
     </div>
+    
     <body>
     <%- body %>
   </body>
