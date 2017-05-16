@@ -80,6 +80,8 @@ bower_components
 ################################################
 .tmp
 dump.rdb
+data
+./nyc_output
 
 
 

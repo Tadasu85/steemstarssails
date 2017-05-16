@@ -1,7 +1,7 @@
 SteemStars!
-
+<center>
 <img src="https://github.com/Tadasu85/steemstarssails/blob/master/assets/images/banner.png"></img>
-
+</center>
 [![Coverage Status](https://coveralls.io/repos/github/Tadasu85/steemstarssails/badge.svg?branch=master)](https://coveralls.io/github/Tadasu85/steemstarssails?branch=master)
 
 [![Build Status](https://travis-ci.org/Tadasu85/steemstarssails.svg?branch=master)](https://travis-ci.org/Tadasu85/steemstarssails)
