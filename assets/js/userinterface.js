@@ -1,4 +1,5 @@
 var steemaccount = "";
+var data = "";
 document.addEventListener("DOMContentLoaded", function(event) {
 if (window.location.pathname=='/permission/galaxy') {
 //Fire and attach CXT menu and items to cytoscape here, define buttons so on.
@@ -18,8 +19,9 @@ setTimeout(function(){
 		content: 'Build Menu',
 		select: function(ele){
 			if(ele.data('label') == steemaccount){
+				
 			    $("#jigonsaseh-data").html("<center>" +steemaccount.toUpperCase()+"</center>");
-                document.getElementById('jigonsaseh').style.display='block';
+			    document.getElementById('jigonsaseh').style.display='block';
                 document.getElementById('fade').style.display='block';
 			        }
 			else{
@@ -87,8 +89,6 @@ io.socket.get('/population/?user=' + steemaccount, function gotResponse(body, re
 setTimeout(function(){
 $("#global-hud-top").html("Research: " + globalResearch+" Power: "+globalPower+" Materials: "+globalMaterials+
 " Population: "+globalPopulation+" Ships: "+globalShips+" Embassies: "+globalEmbassies);
-}, 1000);
-
 steem.api.getAccountCount(function(err, result) {
 globalJigs = result;
 $("#global-hud-bottom").html("Global Accounts: " + globalJigs);
@@ -96,5 +96,7 @@ $("#global-hud-bottom").html("Global Accounts: " + globalJigs);
 steem.api.getDynamicGlobalProperties(function(err, result) {
 globalTime = result.time;
 $("#global-hud-bottom").append(" Current Block Time: " + globalTime );
+$("#global-hud-bottom").append(" Current Graph Nodes: " + cy.collection('node').length );
 });
-    }
+}, 5000);
+ }

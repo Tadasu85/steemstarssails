@@ -4,12 +4,8 @@ var home_x_coord;
 var home_y_coord;
 
 
-
-
-document.addEventListener("DOMContentLoaded", function(event) {
-    
-    
-    
+document.addEventListener("DOMContentLoaded", function(event) {  
+ 
 
 if (window.location.pathname=='/permission/galaxy') {
 io.socket.get('/planet/?name='+steemaccount, {limit: 1}, function(things, jwr) {
@@ -130,32 +126,15 @@ var cy = window.cy = cytoscape({
             classes: 'background'
               }]
 });
+
  }, 500);
-testing();
-//setTimeout(function(){ cy.layout({name: 'preset', stop: function(){}});  }, 5000);
-
-io.on('connection',function(socket){
-// This event will trigger when any user is connected.
-// You can use 'socket' to emit and receive events.
-socket.on('commend added',function(data){
-// When any connected client emit this event, we will receive it here.
-io.emit('something happend'); // for all.
-socket.broadcast.emit('something happend'); // for all except me.
-});
-});
-
+loadgalaxydata();
 }
 
 });
 
-
-
-
-
-
-
 function addFollowers(){
-cy.getElementById(steemaccount).addClass('parent');
+
 
 steem.api.getFollowers(steemaccount, 0, "blog", 100, function(err, result) {
 
@@ -213,16 +192,33 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
 
 
 
-function testing(){
-    function allDone(notAborted, arr) {
+function loadgalaxydata(){
+    function allDoneplanets(notAborted, arr) {
         //console.log("done", notAborted, arr);
+        cy.startBatch();
         for(var obj = 0; obj<arr.length;obj++){
+            
             //console.log(arr[obj].name);
             cy.add({group: "nodes", data: {id: arr[obj].name, label: arr[obj].name}, position: {x: parseFloat(arr[obj].x_coord), y: parseFloat(arr[obj].y_coord)}});
+            
         }
-        cy.layout({name: 'preset', stop: function(){}});
+        cy.endBatch();
+        cy.layout({name: 'preset'});
+        getedges();
     }
-    io.socket.get('/edge/', {limit: 1000}, function(things, jwr) 
+    function allDoneedges(notAborted, arr) {
+        cy.startBatch();
+        for(var obj = 0; obj<arr.length;obj++){
+            
+            //console.log(arr[obj].point_a);
+            cy.add({group: "edges", data: {source: arr[obj].point_a, target: arr[obj].point_b}});
+            
+        }
+        cy.endBatch();
+        cy.layout({name: 'preset'});
+    }
+
+    io.socket.get('/planet', {limit: 1000}, function(things, jwr) 
     {
         //console.log(things, jwr);
     forEach(things, function(item, index, arr) {
@@ -232,8 +228,22 @@ function testing(){
     setTimeout(function() {
     done();
     }, 100);
-    }, allDone);
+    }, allDoneplanets);
     
     });
-   
+    function getedges(){
+    io.socket.get('/edge', {limit: 1000}, function(things, jwr) 
+    {
+        //console.log(things, jwr);
+    forEach(things, function(item, index, arr) {
+    //console.log("each", item, index, arr);
+    //console.log(item[0].name);
+    var done = this.async();
+    setTimeout(function() {
+    done();
+    }, 100);
+    }, allDoneedges);
+    
+    });
+   }
 }
