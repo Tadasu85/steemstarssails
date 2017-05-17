@@ -129,6 +129,8 @@ var cy = window.cy = cytoscape({
 
  }, 500);
 loadgalaxydata();
+io.socket.get('/game/?id=58dc05bdd6c3d89b075f9cc9', function(resData, jwres) {console.log(resData);})
+
 }
 
 });

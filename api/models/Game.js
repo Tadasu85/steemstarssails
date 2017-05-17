@@ -9,6 +9,8 @@ module.exports = {
 
   attributes: {
   name: 'string',
+
+  age: 'string',
     
   
   planets: {

@@ -88,7 +88,7 @@ io.socket.get('/population/?user=' + steemaccount, function gotResponse(body, re
     
 setTimeout(function(){
 $("#global-hud-top").html("Research: " + globalResearch+" Power: "+globalPower+" Materials: "+globalMaterials+
-" Population: "+globalPopulation+" Ships: "+globalShips+" Embassies: "+globalEmbassies);
+"<p id='hudpop'> Population: "+globalPopulation+"</p>" +" Ships: "+globalShips+" Embassies: "+globalEmbassies);
 steem.api.getAccountCount(function(err, result) {
 globalJigs = result;
 $("#global-hud-bottom").html("Global Accounts: " + globalJigs);
@@ -99,4 +99,14 @@ $("#global-hud-bottom").append(" Current Block Time: " + globalTime );
 $("#global-hud-bottom").append(" Current Graph Nodes: " + cy.collection('node').length );
 });
 }, 5000);
+
+io.socket.on('game', function(event){
+
+	console.log($("#hudpop").val());
+    
+    $("#hudpop").replaceWith("<p id='hudpop'> Population: "+ globalPopulation++ +"</p>");
+
+});
  }
+
+
