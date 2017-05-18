@@ -1,5 +1,5 @@
 /**
-* Post.js
+* Post.js this is another dummy model.
 */
 
 module.exports = {

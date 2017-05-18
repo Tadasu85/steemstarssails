@@ -2,7 +2,6 @@
  * Ship.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
@@ -10,11 +9,12 @@ module.exports = {
   
   attributes: {
     name: 'string',
-    type: 'string',
+    type: 'string', //TODO:Enum for ship types.
+    location: 'string', //TODO: ref for planet it is located on. if it is docked.
     x_coord: 'float',
     y_coord: 'float',
     
-    // Add a reference to User
+    // Add a reference to Game
     owner: {
       model: 'game'
     }

@@ -1,3 +1,5 @@
+//This service handles the heartbeat of the game, and instantiates that process on startup.
+
 var heartbeats = require('heartbeats');
 var heart = heartbeats.createHeart(1000);
 
@@ -22,7 +24,7 @@ Game.publishUpdate('58dc05bdd6c3d89b075f9cc9', {
 });
 
 module.exports = {
-
+//this is likely not even needed considering we are publishing updates to all sockets on the change.
 	ping: function() {
 		return globalheartage;
 	}

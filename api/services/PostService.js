@@ -1,7 +1,7 @@
 /**
 * PostService
 *
-* @description :: Service that handles posts
+* @description :: Dummy service for our dummy models we also use this service in our tests.
 */
 
 module.exports = {

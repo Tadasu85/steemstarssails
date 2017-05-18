@@ -1,19 +1,21 @@
 /**
  * Population.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
- */
+ * @description :: The population models keeps a record of all population on all planets belonging to users.
+  */
 
 module.exports = {
 
   attributes: {
+  	//the planet that the populations is on.
   location: {
       model: 'planet',
     },
+    //the user that the population belongs to.
   username: {
       model: 'user',
     },
+    //the amount of population on this planet belonging to this user.
   amount: 'string'
   }
 };

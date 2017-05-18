@@ -1,4 +1,5 @@
 <center>
+
 <h1 id="main-title">Hi <%= req.user.username %>,</h1>
  
 <p>You've successfully logged in.</p>
@@ -25,21 +26,7 @@ function hndlr(result) {
       
     }
     var username = '<%= req.user.username %>';
-/*  document.addEventListener("DOMContentLoaded", function(event) {
-    steem.api.getAccounts([(username)], function(err, result) {
-      $.each(result, function(key, value){
-        
-          $.each(value, function(key, value){
-          
-          document.getElementById("content").innerHTML += "<br>" + key + " : " + value + "<br> <hr>" ;
-          //console.log(key, value);
-          
-          });
-        
-      });
-    });
-  });*/
-    
+  
 </script>
 
 </table>

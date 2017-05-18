@@ -1,16 +1,18 @@
 /**
  * Planet.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ * @description :: A planet in this context contains data about the point, x and y coords as well as a number 
+ * of other needed pieces of information.
  */
 
 module.exports = {
 
   attributes: {
+    //The name is both the name of the planet and the name of the accoun that is being referenced in steem.
     name: {type: 'string', unique: true},
     x_coord: 'float',
     y_coord: 'float',
+    //A collection of all players that have inhabitants on the planet.
     inhabitants: {
       collection: 'population',
       via: 'location',

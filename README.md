@@ -16,6 +16,26 @@ SteemStars is a game in which we will use the steem blockchain to generate some 
 
 If you dont know what the steem network is check it out at https://steemit.com/
 
+_________Setup_________
+
+1) git clone this repo after having installed NVM & NPM 
+
+2) we need node 6.10.2 so run nvm install 6.10.2
+
+3) set that version of node as your default with nvm alias default 6.10.2
+
+4) install mongodb
+
+5) cd into this rep and run npm install
+
+6) install sails globally for its hooks npm install sails -g
+
+7) launch mongo db script with ./mongod
+
+8) sails lift and then open your browser to localhost:1337
+
+9) Enjoy! PRs will only be reviewed with tests passed.
+
 The Token that SteemStars! depends on for a funding model can be found here: https://counterpartychain.io/asset/STEEMSTARS
 
 This is one of the funding models that this software/game uses. As such if you would like to see further growth of this software you can help by buying this token and using it.

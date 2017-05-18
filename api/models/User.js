@@ -1,3 +1,5 @@
+//The user model is used to store all information about the user, we also use bcrypt to encypt the password.
+
 var bcrypt = require('bcrypt');
 
 module.exports = {
