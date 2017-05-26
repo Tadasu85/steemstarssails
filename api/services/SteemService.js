@@ -6,42 +6,35 @@
 */
 var steem = require('steem');
 
+var asyncLoop = require('node-async-loop');
 
-setTimeout(function(){ 
+var array = [];
+
+
+
+setTimeout(function(){
 	sails.log("Hello its me SteemService!"); 
 
-		steem.api.getDynamicGlobalProperties(function(err, global) {
+	steem.api.getDynamicGlobalProperties(function(err, result) {
+  	console.log(err, result.last_irreversible_block_num);
+  	array = Array(result.last_irreversible_block_num).fill(0);
+  	console.log(array);
+	});
 
-		sails.log("Block Num: " + global.last_irreversible_block_num);
-  		sails.log(err, global);
-
-  		steem.api.getBlock(global.last_irreversible_block_num, function(err, result) {
-
-  			console.log(err, result.transaction_ids);
-
-  				result.transaction_ids.forEach(function(element){
-  					steem.api.getTransaction(element, function(err, result) {
-  					console.log(err, result);
-					});
-  				});
-			});
-
-		});
-
-
-
-		//Doing some playing!
+	asyncLoop(array, function (item, next)
+	{
+    steem.api.getBlock(item, function (err, result) {
+    	console.log(result);
+    });
+    next();
+	}, function ()
+	{
+    console.log('Finished!');
+	});
 
 
 }, 5000);
 
 module.exports = {
+
 };
-
-
-steem.api.setSubscribeCallback(callback, clearFilter, function(err, result) {
-	function callback(data){
-		console.log(data);
-	}
-  console.log(err, result);
-});
