@@ -14,8 +14,8 @@ var array = [];
 
 steem.api.getDynamicGlobalProperties(function(err, result) {
   	console.log(err, result);
-  	var N = result.last_irreversible_block_num;
-  	array = _.range(1092, N - 1092);
+  	var N = 100;
+  	array = _.range(1092, N + 1092);
   	
   	
   	console.log(array);
@@ -28,6 +28,9 @@ setTimeout(function(){
 	asyncLoop(array, function(item, next)
 	{
     steem.api.getBlock(item, function (err, result) {
+    	if(err){
+    		console.log(err);
+    	}
     	console.log(item);
     });
     next();
