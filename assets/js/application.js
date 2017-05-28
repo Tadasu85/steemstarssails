@@ -129,7 +129,7 @@ var cy = window.cy = cytoscape({
 
  }, 500);
 loadgalaxydata();
-io.socket.get('/game/?id=58dc05bdd6c3d89b075f9cc9', function(resData, jwres) {console.log(resData);})
+io.socket.get('/game/?_id=58dc05bdd6c3d89b075f9cc9', function(resData, jwres) {console.log(resData);})
 
 }
 
@@ -192,19 +192,18 @@ steem.api.getFollowing(ele.id(), 0, "blog", 100, function(err, result) {
     cy.endBatch();
 }
 
-
-
 function loadgalaxydata(){
     function allDoneplanets(notAborted, arr) {
         //console.log("done", notAborted, arr);
-        cy.startBatch();
+        //cy.startBatch();
         for(var obj = 0; obj<arr.length;obj++){
-            
+
+            if(arr[obj].name != steemaccount){            
             //console.log(arr[obj].name);
             cy.add({group: "nodes", data: {id: arr[obj].name, label: arr[obj].name}, position: {x: parseFloat(arr[obj].x_coord), y: parseFloat(arr[obj].y_coord)}});
-            
+            }
         }
-        cy.endBatch();
+        //cy.endBatch();
         cy.layout({name: 'preset'});
         getedges();
     }
