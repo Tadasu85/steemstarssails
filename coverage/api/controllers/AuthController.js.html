@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.18% </span>
+        <span class="strong">15.38% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/11</span>
+        <span class='fraction'>2/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">20% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/10</span>
+        <span class='fraction'>2/12</span>
       </div>
     </div>
   </div>
@@ -81,7 +81,27 @@
 36
 37
 38
-39</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -93,10 +113,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,6 +120,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -119,9 +145,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var passport = require('passport');
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * AuthController
+ *
+ * @description :: This controller handles our login and authentication actions login, logout and auth for restauth.
+ * keep actions, shortcuts and rest disabled here for the time being for safety.
+ */
+&nbsp;
+var passport = require('passport');
 &nbsp;
 module.exports = {
+&nbsp;
+    //set configs for this controller.
 &nbsp;
     _config: {
         actions: false,
@@ -131,9 +166,11 @@ module.exports = {
 &nbsp;
     login: <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {
 &nbsp;
+        //using passports local lib we define our login and auth actions.
+&nbsp;
 <span class="cstat-no" title="statement not covered" >        passport.authenticate('local', <span class="fstat-no" title="function not covered" >fu</span>nction(err, user, info) {</span>
 <span class="cstat-no" title="statement not covered" >            if ((err) || (!user)) {</span>
-                /*return res.redirect('/user/profile');*/
+<span class="cstat-no" title="statement not covered" >                return res.redirect('/permission/profile');</span>
 <span class="cstat-no" title="statement not covered" >                return res.send({</span>
                     message: info.message,
                     user: user
@@ -142,15 +179,17 @@ module.exports = {
 <span class="cstat-no" title="statement not covered" >            req.logIn(user, <span class="fstat-no" title="function not covered" >fu</span>nction(err) {</span>
 <span class="cstat-no" title="statement not covered" >                if (err) <span class="cstat-no" title="statement not covered" >res.send(err);</span></span>
 <span class="cstat-no" title="statement not covered" >                return res.redirect('/permission/profile');</span>
-               /* return res.send({
+<span class="cstat-no" title="statement not covered" >                return res.send({</span>
                     message: info.message,
                     user: user
                     
-                });*/
+                });
             });
 &nbsp;
         })(req, res);
     },
+&nbsp;
+    //logout actions return to homepage.
 &nbsp;
     logout: <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {
 <span class="cstat-no" title="statement not covered" >        req.logout();</span>
@@ -163,7 +202,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 27 2017 16:19:52 GMT+0000 (UTC)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun May 28 2017 03:40:42 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

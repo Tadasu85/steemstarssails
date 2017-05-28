@@ -11,7 +11,7 @@ this.timeout(10000);
 
 sails.lift({
    log: {
-     level: 'silent'
+     level: 'error'
    },
    hooks: {
      grunt: false
