@@ -83,28 +83,31 @@ function configureHUD(){
     var globalShips = 0;
     var globalEmbassies = 0;
 io.socket.get('/population/?user=' + steemaccount, function gotResponse(body, response){
-    globalPopulation = body[0].amount;
+	globalPopulation = body[0].amount;
 });
     
 setTimeout(function(){
-$("#global-hud-top").html("Research: " + globalResearch+" Power: "+globalPower+" Materials: "+globalMaterials+
-"<p id='hudpop'> Population: "+globalPopulation+"</p>" +" Ships: "+globalShips+" Embassies: "+globalEmbassies);
+$("#global-hud-top").append("<p id='research'>Research: " + globalResearch + "</p>") 
+$("#global-hud-top").append("<p id='power'>Power: " + globalPower + "</p>")
+$("#global-hud-top").append("<p id='materials'>Materials: " + globalMaterials + "</p>")
+$("#global-hud-top").append("<p id='population'>Population: " + globalPopulation + "</p>")
+$("#global-hud-top").append("<p id='ships'>Ships: " + globalShips + "</p>")
+$("#global-hud-top").append("<p id='embassies'>Embassies: " + globalEmbassies + "</p>")
+
 steem.api.getAccountCount(function(err, result) {
 globalJigs = result;
-$("#global-hud-bottom").html("Global Accounts: " + globalJigs);
+$("#global-hud-bottom").html("<p id='globalaccounts'>" + "Global Accounts: " + globalJigs + "</p>");
 });
 steem.api.getDynamicGlobalProperties(function(err, result) {
 globalTime = result.time;
-$("#global-hud-bottom").append(" Current Block Time: " + globalTime );
-$("#global-hud-bottom").append(" Current Graph Nodes: " + cy.collection('node').length );
+$("#global-hud-bottom").append("<p id='blocktime'>Current Block Time: " + globalTime + "</p>" );
+$("#global-hud-bottom").append("<p id='graphnodes'>Current Graph Nodes: " + cy.collection('node').length+ "</p>" );
 });
-}, 5000);
+}, 7000);
 
 io.socket.on('game', function(event){
-
-	console.log($("#hudpop").val());
-    
-    $("#hudpop").replaceWith("<p id='hudpop'> Population: "+ globalPopulation++ +"</p>");
+  
+    $("#population").replaceWith("<p id='population'> Population: "+ globalPopulation++ +"</p>");
 
 });
  }
