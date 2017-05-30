@@ -14,18 +14,18 @@ var _ = require('underscore');
 
 module.exports = {
 
-  init: function() {
+  init: function(options, done) {
 
   var N = 0;
-  var array = _.range(1092, N);
+  var array = _.range(1092, 1500);
 
   sails.log("Hello its me SteemService!");
 
   steem.api.getDynamicGlobalProperties(function(err, result) {
     if(err){
-        return(err);
+        return done(err);
       }
-      sails.log("Got last locked block: ", result.last_irreversible_block_num);
+       sails.log("Got last locked block: ", result.last_irreversible_block_num);
 
       N = result.last_irreversible_block_num;
   });
@@ -33,7 +33,7 @@ module.exports = {
   asyncLoop(array, function(item, next) {
     steem.api.getBlock(item, function (err, result) {
       if(err){
-        return(err);
+        return done(err);
       }
       sails.log(item, result);
     });
@@ -41,6 +41,7 @@ module.exports = {
   }, function ()
   {
     sails.log('Finished!');
+    return;
 
   });
 

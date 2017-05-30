@@ -17,7 +17,7 @@ module.exports.bootstrap = function(cb) {
 HeartbeatService.init();
 
 
-SteemService.init();
+
 
 
 cb();

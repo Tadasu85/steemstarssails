@@ -1,13 +1,14 @@
 //This service handles the heartbeat of the game, and instantiates that process on startup.
 
 var heartbeats = require('heartbeats');
+var steem = require('steem');
 var heart = heartbeats.createHeart(1000);
 
 module.exports = {
 
 	init: function() {
 
-		heart.createEvent(5, function(count, last){
+		heart.createEvent(2, function(count, last){
 
       var globalheartage = heart.age;
 
@@ -22,6 +23,18 @@ module.exports = {
 
       Game.publishUpdate('58dc05bdd6c3d89b075f9cc9', {
       age: globalheartage
+      });
+
+      steem.api.getState("", function(err, state) {
+      //sails.log(err, state.props.head_block_number);
+      if (err) {
+      
+        return err;
+
+        }
+      steem.api.getBlock(state.props.head_block_number, function(err, block) {
+      sails.log(err, block.transactions.length, state.props.head_block_number);
+      });
       });
 
     });
