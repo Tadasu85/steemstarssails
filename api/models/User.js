@@ -23,6 +23,10 @@ module.exports = {
             var obj = this.toObject();
             delete obj.password;
             return obj;
+        },
+        growthrate: {
+            type: 'float',
+            default: 0.25
         }
     },
     beforeCreate: function(user, cb) {

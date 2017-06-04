@@ -8,15 +8,23 @@ module.exports = {
 
 	init: function() {
 
-		heart.createEvent(2, function(count, last){
+		heart.createEvent(30, function(count, last){
 
       var globalheartage = heart.age;
+
+      Planet.find()
+      .populate('inhabitants')
+      .exec(function (err, population){
+      population[0].planet;
+      });
+    
 
       Game.update({'id':'58dc05bdd6c3d89b075f9cc9'},{age: globalheartage}).exec(function afterwards(err, updated){
 
         if (err) {
       
         return err;
+        sails.log(err);
 
         } 
       });
@@ -26,7 +34,7 @@ module.exports = {
       });
 
       steem.api.getState("", function(err, state) {
-      //sails.log(err, state.props.head_block_number);
+      sails.log(err, state.props.head_block_number);
       if (err) {
       
         return err;

@@ -12,7 +12,7 @@ module.exports = {
       model: 'planet',
     },
     //the user that the population belongs to.
-  username: {
+  userid: {
       model: 'user',
     },
     //the amount of population on this planet belonging to this user.
