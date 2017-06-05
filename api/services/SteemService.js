@@ -16,33 +16,8 @@ module.exports = {
 
   init: function(options, done) {
 
-  var N = 0;
-  var array = _.range(1092, 1500);
-
-  sails.log("Hello its me SteemService!");
-
-  steem.api.getDynamicGlobalProperties(function(err, result) {
-    if(err){
-        return done(err);
-      }
-       sails.log("Got last locked block: ", result.last_irreversible_block_num);
-
-      N = result.last_irreversible_block_num;
-  });
-
-  asyncLoop(array, function(item, next) {
-    steem.api.getBlock(item, function (err, result) {
-      if(err){
-        return done(err);
-      }
-      sails.log(item, result);
-    });
-    next();
-  }, function ()
-  {
-    sails.log('Finished!');
-    return;
-
+  steem.api.streamTransactionsAsync(function(err, t) {
+    sails.log(err, t);
   });
 
 }
