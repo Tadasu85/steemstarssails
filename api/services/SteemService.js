@@ -6,18 +6,21 @@
 */
 var steem = require('steem');
 
-var asyncLoop = require('node-async-loop');
-
-var _ = require('underscore');
-
-
-
 module.exports = {
 
   init: function(options, done) {
 
   steem.api.streamTransactionsAsync(function(err, t) {
-    sails.log(err, t);
+  	if(err) {
+  		return err;
+  	};
+  	if(t.operations[0][0] == "custom_json") {
+  		sails.log(t.operations[0])
+  	};
+  	if(t.operations[0][0] == "account_create_with_delegation" && "account_create") {
+  		sails.log(t.operations[0])
+  	};
+    
   });
 
 }

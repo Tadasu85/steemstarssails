@@ -8,45 +8,34 @@ module.exports = {
 
 	init: function() {
 
-		heart.createEvent(30, function(count, last){
+		heart.createEvent(5, function(count, last){
 
-      var globalheartage = heart.age;
-
-      Planet.find()
-      .populate('inhabitants')
-      .exec(function (err, population){
-      population[0].planet;
-      });
-    
-
-      Game.update({'id':'58dc05bdd6c3d89b075f9cc9'},{age: globalheartage}).exec(function afterwards(err, updated){
-
-        if (err) {
       
-        return err;
-        sails.log(err);
 
-        } 
-      });
+      Game.find({'id':'58dc05bdd6c3d89b075f9cc9'}).exec(function afterwards(err, gameinst){
+        sails.log(err, gameinst[0].age);
+        
+        var currentage = gameinst[0].age;
+          Game.update({'id':'58dc05bdd6c3d89b075f9cc9'}, {age: currentage + 1}).exec(function afterwards(err, updated){
 
-      Game.publishUpdate('58dc05bdd6c3d89b075f9cc9', {
-      age: globalheartage
-      });
-
-      steem.api.getState("", function(err, state) {
-      sails.log(err, state.props.head_block_number);
-      if (err) {
+          if (err) {
       
-        return err;
+            return err;
+            sails.log(err);
 
-        }
-      steem.api.getBlock(state.props.head_block_number, function(err, block) {
-      sails.log(err, block.transactions.length, state.props.head_block_number);
-      });
-      });
+          } 
+
+          Game.publishUpdate('58dc05bdd6c3d89b075f9cc9', {
+            //age: gameinst.age[0]++
+      
+          });
+        
+          });
+      });             
 
     });
 
 	}
 
 }
+

@@ -26,7 +26,7 @@ module.exports = {
         },
         growthrate: {
             type: 'float',
-            default: 0.25
+            defaultsTo: 0.25
         }
     },
     beforeCreate: function(user, cb) {

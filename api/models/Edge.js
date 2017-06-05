@@ -9,7 +9,7 @@ module.exports = {
  attributes: {
     follow_type: {
         type: 'string',
-        enum: ['followed', 'following', 'mutual']
+        enum: ['following', 'mutual']
     },
     //This follow type is based on an association from point a to point b, however this is of course ignored if noted as mutual.
     
@@ -21,7 +21,7 @@ module.exports = {
     
     //Exactly the same as point a simply the secondary point in the association.
     
-    length: 'int',
+    length: 'integer',
     
    /* Referencing here http://www.mathopenref.com/coorddist.html need to plug this equation in with point a and point b x and y coords being the calc vars
     

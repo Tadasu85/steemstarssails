@@ -16,7 +16,7 @@ module.exports = {
       model: 'user',
     },
     //the amount of population on this planet belonging to this user.
-  amount: 'string'
+  amount: 'integer'
   }
 };
 
