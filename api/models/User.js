@@ -27,6 +27,11 @@ module.exports = {
         growthrate: {
             type: 'float',
             defaultsTo: 0.25
+        },
+        populations: {
+            collection: 'population',
+            via: 'userid',
+            dominant: true
         }
     },
     beforeCreate: function(user, cb) {

@@ -26,12 +26,45 @@ module.exports = {
           } 
 
           Game.publishUpdate('58dc05bdd6c3d89b075f9cc9', {
-            //age: gameinst.age[0]++
+            
       
           });
         
           });
-      });             
+      });     
+
+      //Increment all populations each tick.
+
+      var popInc = Population.find();
+
+      popInc.where({});
+
+      popInc.exec(function callBack(err,results){
+        results.forEach(function(element) {
+          User.find({id: element.userid}).exec(function afterwards(err, userforPop){
+            if (err) {
+              sails.log(err);
+            }
+            sails.log("Updated population to: ", userforPop, "AND", element.amount, userforPop[0].growthrate);
+
+            Population.update({'id': element.id}, {amount: element.amount + element.amount * userforPop[0].growthrate}).exec(function afterwards(err, updated){
+              sails.log(updated);
+            if (err) {
+      
+            
+            sails.log(err);
+
+          } 
+
+          Population.publishUpdate(element.id , {
+          });
+              
+            });
+          
+        
+          });
+        });
+      });
 
     });
 

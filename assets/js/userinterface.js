@@ -1,4 +1,5 @@
 var steemaccount = "";
+
 var data = "";
 document.addEventListener("DOMContentLoaded", function(event) {
 if (window.location.pathname=='/permission/galaxy') {
@@ -82,9 +83,15 @@ function configureHUD(){
     var globalPopulation = 0;
     var globalShips = 0;
     var globalEmbassies = 0;
-io.socket.get('/population/?user=' + steemaccount, function gotResponse(body, response){
-	globalPopulation = body[0].amount;
+io.socket.get('/user/?username='+ steemaccount, function gotResponse(body, response){
+	var userid = body[0].id;
+	console.log(body);
+	io.socket.get('/population/?userid='+ userid, function gotResponse(body, response){
+		console.log(body, response);
+		globalPopulation = body[0].amount;
+	});
 });
+
     
 setTimeout(function(){
 $("#global-hud-top").append("<p id='research'>Research: " + globalResearch + "</p>") 
@@ -105,9 +112,9 @@ $("#global-hud-bottom").append("<p id='graphnodes'>Current Graph Nodes: " + cy.c
 });
 }, 7000);
 
-io.socket.on('game', function(event){
-  
-    $("#population").replaceWith("<p id='population'> Population: "+ globalPopulation++ +"</p>");
+io.socket.on('population', function(event, data){
+  	console.log(event);
+    //$("#population").replaceWith("<p id='population'> Population: "+ globalPopulation++ +"</p>");
 
 });
  }

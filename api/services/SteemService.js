@@ -15,10 +15,10 @@ module.exports = {
   		return err;
   	};
   	if(t.operations[0][0] == "custom_json") {
-  		sails.log(t.operations[0])
+  		//sails.log(t.operations[0])
   	};
   	if(t.operations[0][0] == "account_create_with_delegation" && "account_create") {
-  		sails.log(t.operations[0])
+  		//sails.log(t.operations[0])
   	};
     
   });
