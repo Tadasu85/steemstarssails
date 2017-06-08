@@ -13,7 +13,7 @@ module.exports = {
       
 
       Game.find({'id':'58dc05bdd6c3d89b075f9cc9'}).exec(function afterwards(err, gameinst){
-        sails.log(err, gameinst[0].age);
+        //sails.log(err, gameinst[0].age);
         
         var currentage = gameinst[0].age;
           Game.update({'id':'58dc05bdd6c3d89b075f9cc9'}, {age: currentage + 1}).exec(function afterwards(err, updated){
@@ -45,18 +45,22 @@ module.exports = {
             if (err) {
               sails.log(err);
             }
-            sails.log("Updated population to: ", userforPop, "AND", element.amount, userforPop[0].growthrate);
+            
+            var evaluatedPop = element.amount + element.amount * userforPop[0].growthrate;
 
-            Population.update({'id': element.id}, {amount: element.amount + element.amount * userforPop[0].growthrate}).exec(function afterwards(err, updated){
-              sails.log(updated);
+            //sails.log(evaluatedPop);
+
+            Population.update({'id': element.id}, {amount: Math.round(evaluatedPop * 100) / 100}).exec(function afterwards(err, updated){
+              //sails.log(updated);
             if (err) {
       
-            
+            return err;
             sails.log(err);
 
           } 
 
           Population.publishUpdate(element.id , {
+            'amount': element.amount
           });
               
             });

@@ -31,7 +31,6 @@ module.exports = {
         populations: {
             collection: 'population',
             via: 'userid',
-            dominant: true
         }
     },
     beforeCreate: function(user, cb) {

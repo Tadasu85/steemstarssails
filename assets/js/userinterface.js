@@ -1,6 +1,6 @@
 var steemaccount = "";
-
 var data = "";
+
 document.addEventListener("DOMContentLoaded", function(event) {
 if (window.location.pathname=='/permission/galaxy') {
 //Fire and attach CXT menu and items to cytoscape here, define buttons so on.
@@ -114,7 +114,7 @@ $("#global-hud-bottom").append("<p id='graphnodes'>Current Graph Nodes: " + cy.c
 
 io.socket.on('population', function(event, data){
   	console.log(event);
-    //$("#population").replaceWith("<p id='population'> Population: "+ globalPopulation++ +"</p>");
+    $("#population").replaceWith("<p id='population'> Population: "+ event.data.amount +"</p>");
 
 });
  }
