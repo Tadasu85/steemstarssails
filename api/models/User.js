@@ -26,7 +26,7 @@ module.exports = {
         },
         growthrate: {
             type: 'float',
-            defaultsTo: 0.25
+            defaultsTo: 0.05
         },
         populations: {
             collection: 'population',
@@ -45,5 +45,27 @@ module.exports = {
                 }
             });
         });
+    },
+
+    afterCreate: function(user, cb) {
+        Planet.find({'name':user.username}).exec(function afterplanet(err, planet){
+            
+            if (err) {
+                    sails.log(err);
+                    cb(err);
+                }
+                    
+        })
+                    
+        Population.create({'location':planet.id'userid':user.id, 'amount':1.00}).exec(function afterpop(err, population){
+                        if (err) {
+                        sails.log(err);
+                        cb(err);
+                        } else {
+                        sails.log(population);
+                        
+                        }
+        })
+        cb();
     }
 };
