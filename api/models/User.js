@@ -57,7 +57,7 @@ module.exports = {
                     
         })
                     
-        Population.create({'location':planet.id'userid':user.id, 'amount':1.00}).exec(function afterpop(err, population){
+        Population.create({'location':planet.id, 'userid':user.id, 'amount':1.00}).exec(function afterpop(err, population){
                         if (err) {
                         sails.log(err);
                         cb(err);
