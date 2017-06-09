@@ -48,24 +48,25 @@ module.exports = {
     },
 
     afterCreate: function(user, cb) {
-        Planet.find({'name':user.username}).exec(function afterplanet(err, planet){
+
+        var digPlanet = Planet.find();
+
+        digPlanet.where({'name':user.username}).exec(function afterwards(err, planet){
             
             if (err) {
                     sails.log(err);
                     cb(err);
                 }
-                    
+            Population.create({'location':planet[0].id, 'userid':user.id, 'amount':1.00}).exec(function afterwards(err, population){
+                if (err) {
+                    sails.log(err);
+                    cb(err);
+                    } else {
+                    sails.log(population);
+                    cb();
+                    }
+            })
+
         })
-                    
-        Population.create({'location':planet.id, 'userid':user.id, 'amount':1.00}).exec(function afterpop(err, population){
-                        if (err) {
-                        sails.log(err);
-                        cb(err);
-                        } else {
-                        sails.log(population);
-                        
-                        }
-        })
-        cb();
     }
 };
