@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">8.7% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/12</span>
+        <span class='fraction'>2/23</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">8.7% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/12</span>
+        <span class='fraction'>2/23</span>
       </div>
     </div>
   </div>
@@ -83,7 +83,38 @@
 38
 39
 40
-41</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,6 +142,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -119,6 +158,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,6 +210,14 @@ module.exports = {
             var obj = <span class="cstat-no" title="statement not covered" >this.toObject();</span>
 <span class="cstat-no" title="statement not covered" >            delete obj.password;</span>
 <span class="cstat-no" title="statement not covered" >            return obj;</span>
+        },
+        growthrate: {
+            type: 'float',
+            defaultsTo: 0.05
+        },
+        populations: {
+            collection: 'population',
+            via: 'userid',
         }
     },
     beforeCreate: <span class="fstat-no" title="function not covered" >fu</span>nction(user, cb) {
@@ -162,6 +232,29 @@ module.exports = {
                 }
             });
         });
+    },
+&nbsp;
+    afterCreate: <span class="fstat-no" title="function not covered" >fu</span>nction(user, cb) {
+&nbsp;
+        var digPlanet = <span class="cstat-no" title="statement not covered" >Planet.find();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        digPlanet.where({'name':user.username}).exec(function <span class="fstat-no" title="function not covered" >afterwards(</span>err, planet){</span>
+            
+<span class="cstat-no" title="statement not covered" >            if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    sails.log(err);</span>
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                }
+<span class="cstat-no" title="statement not covered" >            Population.create({'location':planet[0].id, 'userid':user.id, 'amount':1.00}).exec(function <span class="fstat-no" title="function not covered" >afterwards(</span>err, population){</span>
+<span class="cstat-no" title="statement not covered" >                if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    sails.log(err);</span>
+<span class="cstat-no" title="statement not covered" >                    cb(err);</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                    sails.log(population);</span>
+<span class="cstat-no" title="statement not covered" >                    cb();</span>
+                    }
+            })
+&nbsp;
+        })
     }
 };</pre></td></tr>
 </table></pre>
@@ -169,7 +262,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun May 28 2017 03:40:42 GMT-0400 (EDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 11 2017 14:43:48 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

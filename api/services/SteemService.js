@@ -18,7 +18,8 @@ module.exports = {
       var currenOperation = JSON.parse(t.operations[0][1].json);
   		sails.log(currenOperation[1].follower + " to: " + currenOperation[1].following + " through: " + currenOperation[1].what );
       if(currenOperation[1].what == "blog") {
-        Edge.create({'from':currenOperation[1].follower, 'to':currenOperation[1].following, 'owner':"58dc05bdd6c3d89b075f9cc9"}).exec(function afterwards(err, edge){
+        Edge.create({'from':currenOperation[1].follower, 'to':currenOperation[1].following, 
+          'owner':"58dc05bdd6c3d89b075f9cc9"}).exec(function afterwards(err, edge){
           if (err) {
                     sails.log(err);
                     } else {
