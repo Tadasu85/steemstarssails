@@ -28,8 +28,8 @@ module.exports = {
             type: 'float',
             defaultsTo: 0.05
         },
-        populations: {
-            collection: 'population',
+        ideals: {
+            collection: 'ideal',
             via: 'userid',
         }
     },
@@ -57,12 +57,12 @@ module.exports = {
                     sails.log(err);
                     cb(err);
                 }
-            Population.create({'location':planet[0].id, 'userid':user.id, 'amount':1.00}).exec(function afterwards(err, population){
+            Ideal.create({'location':planet[0].id, 'userid':user.id, 'amount':1.00}).exec(function afterwards(err, ideal){
                 if (err) {
                     sails.log(err);
                     cb(err);
                     } else {
-                    sails.log(population);
+                    sails.log(ideal);
                     cb();
                     }
             })

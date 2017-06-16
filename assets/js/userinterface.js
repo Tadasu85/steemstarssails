@@ -80,15 +80,15 @@ function configureHUD(){
     var globalResearch = 0;
     var globalPower = 0;
     var globalMaterials = 0;
-    var globalPopulation = 0;
+    var globalIdeal = 0;
     var globalShips = 0;
     var globalEmbassies = 0;
 io.socket.get('/user/?username='+ steemaccount, function gotResponse(body, response){
 	var userid = body[0].id;
 	console.log(body);
-	io.socket.get('/population/?userid='+ userid, function gotResponse(body, response){
+	io.socket.get('/ideal/?userid='+ userid, function gotResponse(body, response){
 		console.log(body, response);
-		globalPopulation = body[0].amount;
+		globalIdeal = body[0].amount;
 	});
 });
 
@@ -97,7 +97,7 @@ setTimeout(function(){
 $("#global-hud-top").append("<p id='research'>Research: " + globalResearch + "</p>") 
 $("#global-hud-top").append("<p id='power'>Power: " + globalPower + "</p>")
 $("#global-hud-top").append("<p id='materials'>Materials: " + globalMaterials + "</p>")
-$("#global-hud-top").append("<p id='population'>Population: " + globalPopulation + "</p>")
+$("#global-hud-top").append("<p id='ideal'>Ideal: " + globalIdeal + "</p>")
 $("#global-hud-top").append("<p id='ships'>Ships: " + globalShips + "</p>")
 $("#global-hud-top").append("<p id='embassies'>Embassies: " + globalEmbassies + "</p>")
 
@@ -112,9 +112,9 @@ $("#global-hud-bottom").append("<p id='graphnodes'>Current Graph Nodes: " + cy.c
 });
 }, 7000);
 
-io.socket.on('population', function(event, data){
+io.socket.on('ideal', function(event, data){
   	console.log(event);
-    $("#population").replaceWith("<p id='population'> Population: "+ event.data.amount +"</p>");
+    $("#ideal").replaceWith("<p id='ideal'> Ideal: "+ event.data.amount +"</p>");
 
 });
  }

@@ -14,7 +14,7 @@ module.exports = {
     cartesian_coordinates: {type: 'json', unique: true, required: true},
     //A collection of all players that have inhabitants on the planet.
     inhabitants: {
-      collection: 'population',
+      collection: 'ideal',
       via: 'location',
       },
     

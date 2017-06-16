@@ -33,24 +33,24 @@ module.exports = {
           });
       });     
 
-      //Increment all populations each tick.
+      //Increment all ideals each tick.
 
-      var popInc = Population.find();
+      var idealInc = Ideal.find();
 
-      popInc.where({});
+      idealInc.where({});
 
-      popInc.exec(function callBack(err,results){
+      idealInc.exec(function callBack(err,results){
         results.forEach(function(element) {
-          User.find({id: element.userid}).exec(function afterwards(err, userforPop){
+          User.find({id: element.userid}).exec(function afterwards(err, userforIdeal){
             if (err) {
               sails.log(err);
             }
             
-            var evaluatedPop = element.amount + element.amount * userforPop[0].growthrate;
+            var evaluatedIdeal = element.amount + element.amount * userforIdeal[0].growthrate;
 
-            //sails.log(evaluatedPop);
+            //sails.log(evaluatedIdeal);
 
-            Population.update({'id': element.id}, {amount: Math.round(evaluatedPop * 100) / 100}).exec(function afterwards(err, updated){
+            Ideal.update({'id': element.id}, {amount: Math.round(evaluatedIdeal * 100) / 100}).exec(function afterwards(err, updated){
               //sails.log(updated);
             if (err) {
       
@@ -59,7 +59,7 @@ module.exports = {
 
           } 
 
-          Population.publishUpdate(element.id , {
+          Ideal.publishUpdate(element.id , {
             'amount': element.amount
           });
               

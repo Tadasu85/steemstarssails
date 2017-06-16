@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.43% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/14</span>
+        <span class='fraction'>3/21</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/3</span>
+        <span class='fraction'>1/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">21.43% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/14</span>
+        <span class='fraction'>3/21</span>
       </div>
     </div>
   </div>
@@ -84,7 +84,29 @@
 39
 40
 41
-42</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -100,8 +122,36 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -111,12 +161,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,24 +185,46 @@ module.exports = {
 <span class="cstat-no" title="statement not covered" >  	if(err) {</span>
 <span class="cstat-no" title="statement not covered" >  		return err;</span>
   	};
+    
 <span class="cstat-no" title="statement not covered" >  	if(t.operations[0][0] == "custom_json" &amp;&amp; t.operations[0][1].json[2] == 'f') {</span>
       var currenOperation = <span class="cstat-no" title="statement not covered" >JSON.parse(t.operations[0][1].json);</span>
-<span class="cstat-no" title="statement not covered" >  		sails.log(currenOperation[1].follower + " to: " + currenOperation[1].following + " through: " + currenOperation[1].what );</span>
+      //sails.log(currenOperation);
+  		//sails.log(currenOperation[1].follower + " to: " + currenOperation[1].following + " through: " + currenOperation[1].what );
 <span class="cstat-no" title="statement not covered" >      if(currenOperation[1].what == "blog") {</span>
-<span class="cstat-no" title="statement not covered" >        Edge.create({'from':currenOperation[1].follower, 'to':currenOperation[1].following, 'owner':"58dc05bdd6c3d89b075f9cc9"}).exec(function <span class="fstat-no" title="function not covered" >afterwards(</span>err, edge){</span>
+<span class="cstat-no" title="statement not covered" >        Edge.create({'from':currenOperation[1].follower, 'to':currenOperation[1].following, </span>
+          'owner':"58dc05bdd6c3d89b075f9cc9"}).exec(function <span class="fstat-no" title="function not covered" >afterwards(</span>err, edge){
 <span class="cstat-no" title="statement not covered" >          if (err) {</span>
 <span class="cstat-no" title="statement not covered" >                    sails.log(err);</span>
                     } else {
-<span class="cstat-no" title="statement not covered" >                    sails.log(edge);</span>
+                    //sails.log(edge);
                     
                     };
         });
-        }else{
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if(currenOperation[1].what == ""){</span>
           //TODO: HANDLE UNFOLLOW WITH DELETE EDGE IF IT EXISTS
+<span class="cstat-no" title="statement not covered" >           Edge.destroy({'from':currenOperation[1].follower, 'to':currenOperation[1].following, </span>
+          'owner':"58dc05bdd6c3d89b075f9cc9"}).exec(function <span class="fstat-no" title="function not covered" >afterwards(</span>err, edge){
+<span class="cstat-no" title="statement not covered" >          if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                    sails.log(err);</span>
+                    } else {
+                    //sails.log("Destroyed: ", edge);
+                    
+                    };
+          });
         }
   	};
 <span class="cstat-no" title="statement not covered" >  	if(t.operations[0][0] == "account_create_with_delegation") {</span>
-  		//sails.log(t.operations[0])
+<span class="cstat-no" title="statement not covered" >  		sails.log("Newly minted account: ",t.operations[0][1].new_account_name);</span>
+<span class="cstat-no" title="statement not covered" >      Planet.create({'name':t.operations[0][1].new_account_name,'cartesian_coordinates':{'X':Math.random()*100000,'Y':Math.random()*100000},'owner':"58dc05bdd6c3d89b075f9cc9"}).exec(<span class="fstat-no" title="function not covered" >fu</span>nction (err, records) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
+<span class="cstat-no" title="statement not covered" >        sails.log(err);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >        sails.log("Created: ", records);</span>
+                    
+        };
+      });
   	};
     
   });
@@ -172,7 +238,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 11 2017 14:43:48 GMT-0400 (EDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Jun 16 2017 11:41:43 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
