@@ -13,11 +13,11 @@ module.exports = {
     },
     //This follow type is based on an association from point a to point b, however this is of course ignored if noted as mutual.
     
-    point_a: 'string',
+    from: 'string',
     
     //This is simply one planet in the game, it does not matter if it is origin or destination to this field.
     
-    point_b: 'string',
+    to: 'string',
     
     //Exactly the same as point a simply the secondary point in the association.
     
