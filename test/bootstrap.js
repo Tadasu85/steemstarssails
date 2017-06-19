@@ -1,15 +1,22 @@
-var sails = require('sails');
+var Sails = require('sails');
 var _ = require('lodash');
 
 global.chai = require('chai');
 global.should = chai.should();
+
+
+var config = require('../config/env/test');
+
+var sails;
+
+"use strict";
 
 before(function (done) {
 
 // Increase the Mocha timeout so that Sails has enough time to lift.
 this.timeout(10000);
 
-sails.lift({
+Sails.lift({
    log: {
      level: 'error'
    },
@@ -26,7 +33,8 @@ sails.lift({
      }
    }
 }, function (err, server) {
-   if (err) returndone(err);
+  sails = server;
+   if (err) return done(err);
    // here you can load fixtures, etc.
    done(err, sails);
 });
@@ -35,6 +43,6 @@ sails.lift({
 after(function (done) {
 // here you can clear fixtures, etc.
 if (sails && _.isFunction(sails.lower)) {
-   sails.lower(done);
+   Sails.lower(done);
 }
 });

@@ -23,7 +23,6 @@ module.exports = {
 
         passport.authenticate('local', function(err, user, info) {
             if ((err) || (!user)) {
-                return res.redirect('/permission/profile');
                 return res.send({
                     message: info.message,
                     user: user
@@ -32,11 +31,7 @@ module.exports = {
             req.logIn(user, function(err) {
                 if (err) res.send(err);
                 return res.redirect('/permission/profile');
-                return res.send({
-                    message: info.message,
-                    user: user
-                    
-                });
+                
             });
 
         })(req, res);

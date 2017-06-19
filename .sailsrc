@@ -1,7 +1,7 @@
 {
-"generators": {
-"modules": {
-
-}
-}
+  "generators": {
+    "modules": {
+        "test": "sails-generate-unittest"
+    }
+  }
 }
