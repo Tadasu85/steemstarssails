@@ -1,5 +1,7 @@
 var steemaccount = "";
 var data = "";
+var userid = "";
+var idealid = "";
 
 document.addEventListener("DOMContentLoaded", function(event) {
 if (window.location.pathname=='/permission/galaxy') {
@@ -84,10 +86,11 @@ function configureHUD(){
     var globalShips = 0;
     var globalEmbassies = 0;
 io.socket.get('/user/?username='+ steemaccount, function gotResponse(body, response){
-	var userid = body[0].id;
+	userid = body[0].id;
 	console.log(body);
 	io.socket.get('/ideal/?userid='+ userid, function gotResponse(body, response){
 		console.log(body, response);
+		idealid = body[0].id;
 		globalIdeal = body[0].amount;
 	});
 });
@@ -112,10 +115,15 @@ $("#global-hud-bottom").append("<p id='graphnodes'>Current Graph Nodes: " + cy.c
 });
 }, 7000);
 
-io.socket.on('ideal', function(event, data){
+io.socket.on('ideal', function(event){
   	console.log(event);
-    $("#ideal").replaceWith("<p id='ideal'> Ideal: "+ event.data.amount +"</p>");
-
+  	console.log(event.id);
+  	var compare = String(event.id);
+  	console.log(compare, idealid);
+  	if(event.id == userid) {
+    	$("#ideal").replaceWith("<p id='ideal'> Ideal: "+ event.data.amount +"</p>");
+    	console.log("TRUE");
+	}
 });
  }
 

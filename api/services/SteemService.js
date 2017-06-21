@@ -50,7 +50,7 @@ module.exports = {
         if (err) {
         sails.log(err);
         } else {
-        sails.log("Created: ", records);
+        //sails.log("Created: ", records);
                     
         };
       });
