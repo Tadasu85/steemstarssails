@@ -52,6 +52,7 @@
     "sails-mongo": "^0.12.2",
     "steem": "^0.4.8",
     "steemconnect": "0.0.33",
+    "three": "^0.86.0",
     "underscore": "^1.8.3",
     "unit.js": "^2.0.0"
   },
