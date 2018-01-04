@@ -36,9 +36,13 @@ _________Setup_________
 
 9) Enjoy! PRs will only be reviewed with tests passed.
 
-The token that SteemStars! depends on for a funding model can be found here: https://counterpartychain.io/asset/STEEMSTARS
+The token that SteemStars! depends on for a funding model can be found here: 
 
-To purchase this token visit the vending machine: http://coinvend.io/steemstarsvend
+https://xchain.io/asset/STEEMSTARS
+
+and
+
+https://cryptofresh.com/a/STEEMSTARS
 
 This is one of the funding models that this software/game uses. As such if you would like to see further growth of this software you can help by buying this token and using it.
 
