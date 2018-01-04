@@ -13,7 +13,11 @@ module.exports = {
     //Store the total age of the game in milliseconds. This is only for running time use created timestamp
     //for when it was created.
 
-  age: 'integer',
+  age:
+      {
+      type: 'float',
+      defaultsTo: 0
+      },
     
     //A collcation of all planets in the game galaxy.
   

@@ -3,7 +3,7 @@ module.exports.blueprints = {
   rest: true,
   shortcuts: true,
   mirror: true,
-  defaultLimit: 50, // Set to highest possible value
+  defaultLimit: 99999999999, // Set to highest possible value
 
   //mirror return's socket event's back to the client they originated from - utterly crucial for testing/learning and DRY'ing up your front end.
   

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 if (window.location.pathname=='/permission/galaxy') {
 io.socket.get('/planet/?name='+steemaccount, {limit: 1}, function(things, jwr) {
-        //console.log(things, jwr);
+        console.log(things, jwr);
         home_x_coord = parseFloat(things[0].x_coord);
         home_y_coord = parseFloat(things[0].y_coord);
     });
