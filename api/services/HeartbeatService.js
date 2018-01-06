@@ -31,7 +31,7 @@ module.exports = {
 //console.log(Ideal);
 //Increment all ideals each tick.
       Ideal.find().exec(function callBack(err,results){
-        console.log(err, results);
+        //console.log(err, results);
       });
     });
 	}

@@ -50,7 +50,7 @@
     "sails": "~0.12.11",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.12.2",
-    "steem": "^0.4.8",
+    "steem": "^0.6.7",
     "steemconnect": "0.0.33",
     "underscore": "^1.8.3",
     "unit.js": "^2.0.0"

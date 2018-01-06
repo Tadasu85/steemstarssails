@@ -1,21 +1,18 @@
 /**
 * SteemService
-*
 * @description :: TODO: Service that watches account creation on steem as well as follows/unfollows, this information will
 * then be packed into the DB.
 */
 var steem = require('steem');
-
 module.exports = {
-
   init: function() {
-
-  steem.api.streamTransactionsAsync(function(err, t) {
+    
+  steem.api.streamTransactions(function(err, t) {
+    console.log(t);
   	if(err) {
   		return err;
   	}
-    
-  	if(t.operations[0][0] == "custom_json" && t.operations[0][1].json[2] == 'f') {
+    if(t.operations[0][0] == "custom_json" && t.operations[0][1].json[2] == 'f') {
       var currenOperation = JSON.parse(t.operations[0][1].json);
       //sails.log(currenOperation);
   		//sails.log(currenOperation[1].follower + " to: " + currenOperation[1].following + " through: " + currenOperation[1].what );
@@ -26,11 +23,9 @@ module.exports = {
                     sails.log(err);
                     } else {
                     //sails.log(edge);
-                    
                     }
         });
         }
-
         if(currenOperation[1].what == ""){
           //TODO: HANDLE UNFOLLOW WITH DELETE EDGE IF IT EXISTS
            Edge.destroy({'from':currenOperation[1].follower, 'to':currenOperation[1].following, 
@@ -39,7 +34,6 @@ module.exports = {
                     sails.log(err);
                     } else {
                     //sails.log("Destroyed: ", edge);
-                    
                     }
           });
         }
@@ -51,13 +45,9 @@ module.exports = {
         sails.log(err);
         } else {
         //sails.log("Created: ", records);
-                    
         }
       });
   	}
-    
-  });
-
+    });
 }
-
 };
